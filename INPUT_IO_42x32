@@ -1,0 +1,73 @@
+ 
+ 
+ &IOCTL
+  lasync_io=.FALSE.,
+  l_ke_in_gds=.TRUE.,
+  ngribout=1,
+  yform_read='grb1',
+ /END
+
+ &DATABASE
+ /END
+
+
+! aus Gme
+!  lbdana=.TRUE.,
+ &GRIBIN
+  lbdana=.FALSE.,
+  ydirini='./COS_in/2023012500_42x32/',
+  ydirbd ='./COS_in/2023012500_42x32/',
+  lchkini=.TRUE.,
+  hincbound= 3.0,
+  lchkbd =.TRUE.,
+  lan_t_so0=.TRUE., lan_t_cl=.TRUE., lan_w_cl=.TRUE., lan_vio3=.TRUE.,
+  lan_hmo3=.TRUE., lan_plcov=.TRUE., lan_lai=.TRUE., lan_rootdp=.TRUE.,
+  lan_t_snow=.TRUE., lan_w_i=.TRUE., lan_w_snow=.TRUE., lan_rho_snow=.TRUE.,
+!  lan_w_so=.TRUE.,
+  !lvertwind_bd=.TRUE.,
+  lana_qi=.TRUE.,    llb_qi=.TRUE.,  lana_rho_snow=.FALSE., 
+  lana_qr_qs=.TRUE., llb_qr_qs=.TRUE.,
+ 
+ /END
+
+
+ &GRIBOUT
+  hcomb=0, 3.0, 0.25,
+  lanalysis=.false.,
+  lcheck=.TRUE.,
+  yform_write='grb1',
+!  l_fi_filter=.TRUE.,
+  l_p_filter=.TRUE.,
+  l_z_filter=.TRUE.,
+  lwrite_const= .TRUE.,
+  nunit_of_time=1,
+  yvarml='U         ','V         ','W         ','T         ',
+           'P         ','QV        ','QC        ','QI        ',
+           'QR        ','QS        ','QG        ','Q_SEDIM   ',
+           'CLC       ','TKE       ','HSURF     ','QHAIL     ',
+           'PS        ','T_SNOW    ','T_S       ','W_SNOW    ',
+           'QV_S      ','W_I       ','RAIN_GSP  ','SNOW_GSP  ',
+           'GRAU_GSP  ','PRR_GSP   ','PRS_GSP   ','PRG_GSP   ',
+           'PR_CON    ',
+           'U_10M     ','V_10M     ','T_2M      ','TD_2M     ',
+           'TMIN_2M   ','TMAX_2M   ','VMAX_10M  ','TCM       ',
+           'TCH       ','CLCT      ','CLCH      ','CLCM      ',
+           'CLCL      ','ALB_RAD   ','ASOB_S    ','ATHB_S    ',
+           'ASOB_T    ','ATHB_T    ','APAB_S    ','TOT_PREC  ',
+           'Z0        ','AUMFL_S   ','AVMFL_S   ','ASHFL_S   ',
+           'ALHFL_S   ','HTOP_DC   ','RUNOFF_S  ','RUNOFF_G  ',
+           'PMSL      ','T_G       ','HZEROCL   ','CLCT_MOD  ',
+           'CLDEPTH   ','TDIV_HUM  ','TWATER    ','AEVAP_S   ',
+           'TQI       ','TQC       ','TQV       ','HBAS_SC   ',
+           'HTOP_SC   ','DBZ_850   ','DBZ_CMAX  ','T_SO      ',
+           'W_SO      ','FRESHSNW  ','RHO_SNOW  ',
+           'H_SNOW    ','W_SO_ICE  ','RELHUM_2M ',
+           'ZHD       ','ZTD       ','ZWD       ',
+           'ASOD_T    ','SOBT_RAD  ','THBT_RAD  ','SODT_RAD  ',
+           'NCCLOUD   ','NCICE     ','NCRAIN    ','NCSNOW    ',
+           'NCGRAUPEL ','NCHAIL    ',
+  yvarpl='',
+  yvarzl='',
+
+  ydir='./COS_out/20230125_42x32/',
+ /END

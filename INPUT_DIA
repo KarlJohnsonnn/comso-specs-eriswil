@@ -1,0 +1,13 @@
+&DIACTL
+  !ltestsuite=.FALSE.
+  itype_diag_gusts=1,
+  n0meanval=100000, 
+  nincmeanval=1,
+  lgplong=.FALSE., 
+  lgpshort=.FALSE., 
+  lgpspec=.FALSE.,
+  lmeteogram_specs=.TRUE.,
+  n0gp=0, 
+  nincgp=20,
+  stationlist_tot= 0, 0, 47.0799, 7.8507, '1691916708',
+/

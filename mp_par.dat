@@ -1,0 +1,26 @@
+ 
+ itmax     =            1
+ SMAX      =            1
+ JMAX      =           66 (          66 )(          66 )
+ SIMAX     =            1 (           1 )
+ anz       =           30
+ ipmax     =            1
+ ninpmax   =           30 (          30 )
+ nmax      =            2
+ tmax      =            2
+ epsi      =   0.500000000000000     
+ icond     =            1
+ ikoll     =            2
+ ibrea     =            1
+ iice      =            1
+ idepo     =            0
+ iimfr     =           10
+ ikofr     =            1
+ iinsol    =            7
+ ikeis     =            1
+ imelt     =            1
+ ifrier    =            1
+ isolutens =            0
+ iideal    =            1
+ ishape    =            1
+ imass     =            1

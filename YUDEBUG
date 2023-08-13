@@ -1,0 +1,1540 @@
+  
+0     The decomposition was calculated as follows:
+      ============================================
+  
+  
+       my_cart_id:           0      my_world_id:           0
+       Position in the cartesian grid:  ( 0, 0)
+       Neighbors in the cartesian grid:  
+                                                 1
+                                      -1                   8
+                                                -1
+       Location of this subdomain in the total domain:
+         i =     4,...,    5         j =     4,...,    6
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:           1      my_world_id:           1
+       Position in the cartesian grid:  ( 0, 1)
+       Neighbors in the cartesian grid:  
+                                                 2
+                                      -1                   9
+                                                 0
+       Location of this subdomain in the total domain:
+         i =     4,...,    5         j =     7,...,    9
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:           2      my_world_id:           2
+       Position in the cartesian grid:  ( 0, 2)
+       Neighbors in the cartesian grid:  
+                                                 3
+                                      -1                  10
+                                                 1
+       Location of this subdomain in the total domain:
+         i =     4,...,    5         j =    10,...,   12
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:           3      my_world_id:           3
+       Position in the cartesian grid:  ( 0, 3)
+       Neighbors in the cartesian grid:  
+                                                 4
+                                      -1                  11
+                                                 2
+       Location of this subdomain in the total domain:
+         i =     4,...,    5         j =    13,...,   16
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:           4      my_world_id:           4
+       Position in the cartesian grid:  ( 0, 4)
+       Neighbors in the cartesian grid:  
+                                                 5
+                                      -1                  12
+                                                 3
+       Location of this subdomain in the total domain:
+         i =     4,...,    5         j =    17,...,   20
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:           5      my_world_id:           5
+       Position in the cartesian grid:  ( 0, 5)
+       Neighbors in the cartesian grid:  
+                                                 6
+                                      -1                  13
+                                                 4
+       Location of this subdomain in the total domain:
+         i =     4,...,    5         j =    21,...,   23
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:           6      my_world_id:           6
+       Position in the cartesian grid:  ( 0, 6)
+       Neighbors in the cartesian grid:  
+                                                 7
+                                      -1                  14
+                                                 5
+       Location of this subdomain in the total domain:
+         i =     4,...,    5         j =    24,...,   26
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:           7      my_world_id:           7
+       Position in the cartesian grid:  ( 0, 7)
+       Neighbors in the cartesian grid:  
+                                                -1
+                                      -1                  15
+                                                 6
+       Location of this subdomain in the total domain:
+         i =     4,...,    5         j =    27,...,   29
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:           8      my_world_id:           8
+       Position in the cartesian grid:  ( 1, 0)
+       Neighbors in the cartesian grid:  
+                                                 9
+                                       0                  16
+                                                -1
+       Location of this subdomain in the total domain:
+         i =     6,...,    7         j =     4,...,    6
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:           9      my_world_id:           9
+       Position in the cartesian grid:  ( 1, 1)
+       Neighbors in the cartesian grid:  
+                                                10
+                                       1                  17
+                                                 8
+       Location of this subdomain in the total domain:
+         i =     6,...,    7         j =     7,...,    9
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          10      my_world_id:          10
+       Position in the cartesian grid:  ( 1, 2)
+       Neighbors in the cartesian grid:  
+                                                11
+                                       2                  18
+                                                 9
+       Location of this subdomain in the total domain:
+         i =     6,...,    7         j =    10,...,   12
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          11      my_world_id:          11
+       Position in the cartesian grid:  ( 1, 3)
+       Neighbors in the cartesian grid:  
+                                                12
+                                       3                  19
+                                                10
+       Location of this subdomain in the total domain:
+         i =     6,...,    7         j =    13,...,   16
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:          12      my_world_id:          12
+       Position in the cartesian grid:  ( 1, 4)
+       Neighbors in the cartesian grid:  
+                                                13
+                                       4                  20
+                                                11
+       Location of this subdomain in the total domain:
+         i =     6,...,    7         j =    17,...,   20
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:          13      my_world_id:          13
+       Position in the cartesian grid:  ( 1, 5)
+       Neighbors in the cartesian grid:  
+                                                14
+                                       5                  21
+                                                12
+       Location of this subdomain in the total domain:
+         i =     6,...,    7         j =    21,...,   23
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          14      my_world_id:          14
+       Position in the cartesian grid:  ( 1, 6)
+       Neighbors in the cartesian grid:  
+                                                15
+                                       6                  22
+                                                13
+       Location of this subdomain in the total domain:
+         i =     6,...,    7         j =    24,...,   26
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          15      my_world_id:          15
+       Position in the cartesian grid:  ( 1, 7)
+       Neighbors in the cartesian grid:  
+                                                -1
+                                       7                  23
+                                                14
+       Location of this subdomain in the total domain:
+         i =     6,...,    7         j =    27,...,   29
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          16      my_world_id:          16
+       Position in the cartesian grid:  ( 2, 0)
+       Neighbors in the cartesian grid:  
+                                                17
+                                       8                  24
+                                                -1
+       Location of this subdomain in the total domain:
+         i =     8,...,    9         j =     4,...,    6
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          17      my_world_id:          17
+       Position in the cartesian grid:  ( 2, 1)
+       Neighbors in the cartesian grid:  
+                                                18
+                                       9                  25
+                                                16
+       Location of this subdomain in the total domain:
+         i =     8,...,    9         j =     7,...,    9
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          18      my_world_id:          18
+       Position in the cartesian grid:  ( 2, 2)
+       Neighbors in the cartesian grid:  
+                                                19
+                                      10                  26
+                                                17
+       Location of this subdomain in the total domain:
+         i =     8,...,    9         j =    10,...,   12
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          19      my_world_id:          19
+       Position in the cartesian grid:  ( 2, 3)
+       Neighbors in the cartesian grid:  
+                                                20
+                                      11                  27
+                                                18
+       Location of this subdomain in the total domain:
+         i =     8,...,    9         j =    13,...,   16
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:          20      my_world_id:          20
+       Position in the cartesian grid:  ( 2, 4)
+       Neighbors in the cartesian grid:  
+                                                21
+                                      12                  28
+                                                19
+       Location of this subdomain in the total domain:
+         i =     8,...,    9         j =    17,...,   20
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:          21      my_world_id:          21
+       Position in the cartesian grid:  ( 2, 5)
+       Neighbors in the cartesian grid:  
+                                                22
+                                      13                  29
+                                                20
+       Location of this subdomain in the total domain:
+         i =     8,...,    9         j =    21,...,   23
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          22      my_world_id:          22
+       Position in the cartesian grid:  ( 2, 6)
+       Neighbors in the cartesian grid:  
+                                                23
+                                      14                  30
+                                                21
+       Location of this subdomain in the total domain:
+         i =     8,...,    9         j =    24,...,   26
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          23      my_world_id:          23
+       Position in the cartesian grid:  ( 2, 7)
+       Neighbors in the cartesian grid:  
+                                                -1
+                                      15                  31
+                                                22
+       Location of this subdomain in the total domain:
+         i =     8,...,    9         j =    27,...,   29
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          24      my_world_id:          24
+       Position in the cartesian grid:  ( 3, 0)
+       Neighbors in the cartesian grid:  
+                                                25
+                                      16                  32
+                                                -1
+       Location of this subdomain in the total domain:
+         i =    10,...,   11         j =     4,...,    6
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          25      my_world_id:          25
+       Position in the cartesian grid:  ( 3, 1)
+       Neighbors in the cartesian grid:  
+                                                26
+                                      17                  33
+                                                24
+       Location of this subdomain in the total domain:
+         i =    10,...,   11         j =     7,...,    9
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          26      my_world_id:          26
+       Position in the cartesian grid:  ( 3, 2)
+       Neighbors in the cartesian grid:  
+                                                27
+                                      18                  34
+                                                25
+       Location of this subdomain in the total domain:
+         i =    10,...,   11         j =    10,...,   12
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          27      my_world_id:          27
+       Position in the cartesian grid:  ( 3, 3)
+       Neighbors in the cartesian grid:  
+                                                28
+                                      19                  35
+                                                26
+       Location of this subdomain in the total domain:
+         i =    10,...,   11         j =    13,...,   16
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:          28      my_world_id:          28
+       Position in the cartesian grid:  ( 3, 4)
+       Neighbors in the cartesian grid:  
+                                                29
+                                      20                  36
+                                                27
+       Location of this subdomain in the total domain:
+         i =    10,...,   11         j =    17,...,   20
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:          29      my_world_id:          29
+       Position in the cartesian grid:  ( 3, 5)
+       Neighbors in the cartesian grid:  
+                                                30
+                                      21                  37
+                                                28
+       Location of this subdomain in the total domain:
+         i =    10,...,   11         j =    21,...,   23
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          30      my_world_id:          30
+       Position in the cartesian grid:  ( 3, 6)
+       Neighbors in the cartesian grid:  
+                                                31
+                                      22                  38
+                                                29
+       Location of this subdomain in the total domain:
+         i =    10,...,   11         j =    24,...,   26
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          31      my_world_id:          31
+       Position in the cartesian grid:  ( 3, 7)
+       Neighbors in the cartesian grid:  
+                                                -1
+                                      23                  39
+                                                30
+       Location of this subdomain in the total domain:
+         i =    10,...,   11         j =    27,...,   29
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          32      my_world_id:          32
+       Position in the cartesian grid:  ( 4, 0)
+       Neighbors in the cartesian grid:  
+                                                33
+                                      24                  40
+                                                -1
+       Location of this subdomain in the total domain:
+         i =    12,...,   13         j =     4,...,    6
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          33      my_world_id:          33
+       Position in the cartesian grid:  ( 4, 1)
+       Neighbors in the cartesian grid:  
+                                                34
+                                      25                  41
+                                                32
+       Location of this subdomain in the total domain:
+         i =    12,...,   13         j =     7,...,    9
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          34      my_world_id:          34
+       Position in the cartesian grid:  ( 4, 2)
+       Neighbors in the cartesian grid:  
+                                                35
+                                      26                  42
+                                                33
+       Location of this subdomain in the total domain:
+         i =    12,...,   13         j =    10,...,   12
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          35      my_world_id:          35
+       Position in the cartesian grid:  ( 4, 3)
+       Neighbors in the cartesian grid:  
+                                                36
+                                      27                  43
+                                                34
+       Location of this subdomain in the total domain:
+         i =    12,...,   13         j =    13,...,   16
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:          36      my_world_id:          36
+       Position in the cartesian grid:  ( 4, 4)
+       Neighbors in the cartesian grid:  
+                                                37
+                                      28                  44
+                                                35
+       Location of this subdomain in the total domain:
+         i =    12,...,   13         j =    17,...,   20
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:          37      my_world_id:          37
+       Position in the cartesian grid:  ( 4, 5)
+       Neighbors in the cartesian grid:  
+                                                38
+                                      29                  45
+                                                36
+       Location of this subdomain in the total domain:
+         i =    12,...,   13         j =    21,...,   23
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          38      my_world_id:          38
+       Position in the cartesian grid:  ( 4, 6)
+       Neighbors in the cartesian grid:  
+                                                39
+                                      30                  46
+                                                37
+       Location of this subdomain in the total domain:
+         i =    12,...,   13         j =    24,...,   26
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          39      my_world_id:          39
+       Position in the cartesian grid:  ( 4, 7)
+       Neighbors in the cartesian grid:  
+                                                -1
+                                      31                  47
+                                                38
+       Location of this subdomain in the total domain:
+         i =    12,...,   13         j =    27,...,   29
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          40      my_world_id:          40
+       Position in the cartesian grid:  ( 5, 0)
+       Neighbors in the cartesian grid:  
+                                                41
+                                      32                  48
+                                                -1
+       Location of this subdomain in the total domain:
+         i =    14,...,   15         j =     4,...,    6
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          41      my_world_id:          41
+       Position in the cartesian grid:  ( 5, 1)
+       Neighbors in the cartesian grid:  
+                                                42
+                                      33                  49
+                                                40
+       Location of this subdomain in the total domain:
+         i =    14,...,   15         j =     7,...,    9
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          42      my_world_id:          42
+       Position in the cartesian grid:  ( 5, 2)
+       Neighbors in the cartesian grid:  
+                                                43
+                                      34                  50
+                                                41
+       Location of this subdomain in the total domain:
+         i =    14,...,   15         j =    10,...,   12
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          43      my_world_id:          43
+       Position in the cartesian grid:  ( 5, 3)
+       Neighbors in the cartesian grid:  
+                                                44
+                                      35                  51
+                                                42
+       Location of this subdomain in the total domain:
+         i =    14,...,   15         j =    13,...,   16
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:          44      my_world_id:          44
+       Position in the cartesian grid:  ( 5, 4)
+       Neighbors in the cartesian grid:  
+                                                45
+                                      36                  52
+                                                43
+       Location of this subdomain in the total domain:
+         i =    14,...,   15         j =    17,...,   20
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:          45      my_world_id:          45
+       Position in the cartesian grid:  ( 5, 5)
+       Neighbors in the cartesian grid:  
+                                                46
+                                      37                  53
+                                                44
+       Location of this subdomain in the total domain:
+         i =    14,...,   15         j =    21,...,   23
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          46      my_world_id:          46
+       Position in the cartesian grid:  ( 5, 6)
+       Neighbors in the cartesian grid:  
+                                                47
+                                      38                  54
+                                                45
+       Location of this subdomain in the total domain:
+         i =    14,...,   15         j =    24,...,   26
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          47      my_world_id:          47
+       Position in the cartesian grid:  ( 5, 7)
+       Neighbors in the cartesian grid:  
+                                                -1
+                                      39                  55
+                                                46
+       Location of this subdomain in the total domain:
+         i =    14,...,   15         j =    27,...,   29
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          48      my_world_id:          48
+       Position in the cartesian grid:  ( 6, 0)
+       Neighbors in the cartesian grid:  
+                                                49
+                                      40                  56
+                                                -1
+       Location of this subdomain in the total domain:
+         i =    16,...,   18         j =     4,...,    6
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          49      my_world_id:          49
+       Position in the cartesian grid:  ( 6, 1)
+       Neighbors in the cartesian grid:  
+                                                50
+                                      41                  57
+                                                48
+       Location of this subdomain in the total domain:
+         i =    16,...,   18         j =     7,...,    9
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          50      my_world_id:          50
+       Position in the cartesian grid:  ( 6, 2)
+       Neighbors in the cartesian grid:  
+                                                51
+                                      42                  58
+                                                49
+       Location of this subdomain in the total domain:
+         i =    16,...,   18         j =    10,...,   12
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          51      my_world_id:          51
+       Position in the cartesian grid:  ( 6, 3)
+       Neighbors in the cartesian grid:  
+                                                52
+                                      43                  59
+                                                50
+       Location of this subdomain in the total domain:
+         i =    16,...,   18         j =    13,...,   16
+       Dimensions of this subdomain:
+         ie =    9     je =   10     ke =   50
+  
+  
+       my_cart_id:          52      my_world_id:          52
+       Position in the cartesian grid:  ( 6, 4)
+       Neighbors in the cartesian grid:  
+                                                53
+                                      44                  60
+                                                51
+       Location of this subdomain in the total domain:
+         i =    16,...,   18         j =    17,...,   20
+       Dimensions of this subdomain:
+         ie =    9     je =   10     ke =   50
+  
+  
+       my_cart_id:          53      my_world_id:          53
+       Position in the cartesian grid:  ( 6, 5)
+       Neighbors in the cartesian grid:  
+                                                54
+                                      45                  61
+                                                52
+       Location of this subdomain in the total domain:
+         i =    16,...,   18         j =    21,...,   23
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          54      my_world_id:          54
+       Position in the cartesian grid:  ( 6, 6)
+       Neighbors in the cartesian grid:  
+                                                55
+                                      46                  62
+                                                53
+       Location of this subdomain in the total domain:
+         i =    16,...,   18         j =    24,...,   26
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          55      my_world_id:          55
+       Position in the cartesian grid:  ( 6, 7)
+       Neighbors in the cartesian grid:  
+                                                -1
+                                      47                  63
+                                                54
+       Location of this subdomain in the total domain:
+         i =    16,...,   18         j =    27,...,   29
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          56      my_world_id:          56
+       Position in the cartesian grid:  ( 7, 0)
+       Neighbors in the cartesian grid:  
+                                                57
+                                      48                  64
+                                                -1
+       Location of this subdomain in the total domain:
+         i =    19,...,   21         j =     4,...,    6
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          57      my_world_id:          57
+       Position in the cartesian grid:  ( 7, 1)
+       Neighbors in the cartesian grid:  
+                                                58
+                                      49                  65
+                                                56
+       Location of this subdomain in the total domain:
+         i =    19,...,   21         j =     7,...,    9
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          58      my_world_id:          58
+       Position in the cartesian grid:  ( 7, 2)
+       Neighbors in the cartesian grid:  
+                                                59
+                                      50                  66
+                                                57
+       Location of this subdomain in the total domain:
+         i =    19,...,   21         j =    10,...,   12
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          59      my_world_id:          59
+       Position in the cartesian grid:  ( 7, 3)
+       Neighbors in the cartesian grid:  
+                                                60
+                                      51                  67
+                                                58
+       Location of this subdomain in the total domain:
+         i =    19,...,   21         j =    13,...,   16
+       Dimensions of this subdomain:
+         ie =    9     je =   10     ke =   50
+  
+  
+       my_cart_id:          60      my_world_id:          60
+       Position in the cartesian grid:  ( 7, 4)
+       Neighbors in the cartesian grid:  
+                                                61
+                                      52                  68
+                                                59
+       Location of this subdomain in the total domain:
+         i =    19,...,   21         j =    17,...,   20
+       Dimensions of this subdomain:
+         ie =    9     je =   10     ke =   50
+  
+  
+       my_cart_id:          61      my_world_id:          61
+       Position in the cartesian grid:  ( 7, 5)
+       Neighbors in the cartesian grid:  
+                                                62
+                                      53                  69
+                                                60
+       Location of this subdomain in the total domain:
+         i =    19,...,   21         j =    21,...,   23
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          62      my_world_id:          62
+       Position in the cartesian grid:  ( 7, 6)
+       Neighbors in the cartesian grid:  
+                                                63
+                                      54                  70
+                                                61
+       Location of this subdomain in the total domain:
+         i =    19,...,   21         j =    24,...,   26
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          63      my_world_id:          63
+       Position in the cartesian grid:  ( 7, 7)
+       Neighbors in the cartesian grid:  
+                                                -1
+                                      55                  71
+                                                62
+       Location of this subdomain in the total domain:
+         i =    19,...,   21         j =    27,...,   29
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          64      my_world_id:          64
+       Position in the cartesian grid:  ( 8, 0)
+       Neighbors in the cartesian grid:  
+                                                65
+                                      56                  72
+                                                -1
+       Location of this subdomain in the total domain:
+         i =    22,...,   24         j =     4,...,    6
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          65      my_world_id:          65
+       Position in the cartesian grid:  ( 8, 1)
+       Neighbors in the cartesian grid:  
+                                                66
+                                      57                  73
+                                                64
+       Location of this subdomain in the total domain:
+         i =    22,...,   24         j =     7,...,    9
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          66      my_world_id:          66
+       Position in the cartesian grid:  ( 8, 2)
+       Neighbors in the cartesian grid:  
+                                                67
+                                      58                  74
+                                                65
+       Location of this subdomain in the total domain:
+         i =    22,...,   24         j =    10,...,   12
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          67      my_world_id:          67
+       Position in the cartesian grid:  ( 8, 3)
+       Neighbors in the cartesian grid:  
+                                                68
+                                      59                  75
+                                                66
+       Location of this subdomain in the total domain:
+         i =    22,...,   24         j =    13,...,   16
+       Dimensions of this subdomain:
+         ie =    9     je =   10     ke =   50
+  
+  
+       my_cart_id:          68      my_world_id:          68
+       Position in the cartesian grid:  ( 8, 4)
+       Neighbors in the cartesian grid:  
+                                                69
+                                      60                  76
+                                                67
+       Location of this subdomain in the total domain:
+         i =    22,...,   24         j =    17,...,   20
+       Dimensions of this subdomain:
+         ie =    9     je =   10     ke =   50
+  
+  
+       my_cart_id:          69      my_world_id:          69
+       Position in the cartesian grid:  ( 8, 5)
+       Neighbors in the cartesian grid:  
+                                                70
+                                      61                  77
+                                                68
+       Location of this subdomain in the total domain:
+         i =    22,...,   24         j =    21,...,   23
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          70      my_world_id:          70
+       Position in the cartesian grid:  ( 8, 6)
+       Neighbors in the cartesian grid:  
+                                                71
+                                      62                  78
+                                                69
+       Location of this subdomain in the total domain:
+         i =    22,...,   24         j =    24,...,   26
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          71      my_world_id:          71
+       Position in the cartesian grid:  ( 8, 7)
+       Neighbors in the cartesian grid:  
+                                                -1
+                                      63                  79
+                                                70
+       Location of this subdomain in the total domain:
+         i =    22,...,   24         j =    27,...,   29
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          72      my_world_id:          72
+       Position in the cartesian grid:  ( 9, 0)
+       Neighbors in the cartesian grid:  
+                                                73
+                                      64                  80
+                                                -1
+       Location of this subdomain in the total domain:
+         i =    25,...,   27         j =     4,...,    6
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          73      my_world_id:          73
+       Position in the cartesian grid:  ( 9, 1)
+       Neighbors in the cartesian grid:  
+                                                74
+                                      65                  81
+                                                72
+       Location of this subdomain in the total domain:
+         i =    25,...,   27         j =     7,...,    9
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          74      my_world_id:          74
+       Position in the cartesian grid:  ( 9, 2)
+       Neighbors in the cartesian grid:  
+                                                75
+                                      66                  82
+                                                73
+       Location of this subdomain in the total domain:
+         i =    25,...,   27         j =    10,...,   12
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          75      my_world_id:          75
+       Position in the cartesian grid:  ( 9, 3)
+       Neighbors in the cartesian grid:  
+                                                76
+                                      67                  83
+                                                74
+       Location of this subdomain in the total domain:
+         i =    25,...,   27         j =    13,...,   16
+       Dimensions of this subdomain:
+         ie =    9     je =   10     ke =   50
+  
+  
+       my_cart_id:          76      my_world_id:          76
+       Position in the cartesian grid:  ( 9, 4)
+       Neighbors in the cartesian grid:  
+                                                77
+                                      68                  84
+                                                75
+       Location of this subdomain in the total domain:
+         i =    25,...,   27         j =    17,...,   20
+       Dimensions of this subdomain:
+         ie =    9     je =   10     ke =   50
+  
+  
+       my_cart_id:          77      my_world_id:          77
+       Position in the cartesian grid:  ( 9, 5)
+       Neighbors in the cartesian grid:  
+                                                78
+                                      69                  85
+                                                76
+       Location of this subdomain in the total domain:
+         i =    25,...,   27         j =    21,...,   23
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          78      my_world_id:          78
+       Position in the cartesian grid:  ( 9, 6)
+       Neighbors in the cartesian grid:  
+                                                79
+                                      70                  86
+                                                77
+       Location of this subdomain in the total domain:
+         i =    25,...,   27         j =    24,...,   26
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          79      my_world_id:          79
+       Position in the cartesian grid:  ( 9, 7)
+       Neighbors in the cartesian grid:  
+                                                -1
+                                      71                  87
+                                                78
+       Location of this subdomain in the total domain:
+         i =    25,...,   27         j =    27,...,   29
+       Dimensions of this subdomain:
+         ie =    9     je =    9     ke =   50
+  
+  
+       my_cart_id:          80      my_world_id:          80
+       Position in the cartesian grid:  (10, 0)
+       Neighbors in the cartesian grid:  
+                                                81
+                                      72                  88
+                                                -1
+       Location of this subdomain in the total domain:
+         i =    28,...,   29         j =     4,...,    6
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          81      my_world_id:          81
+       Position in the cartesian grid:  (10, 1)
+       Neighbors in the cartesian grid:  
+                                                82
+                                      73                  89
+                                                80
+       Location of this subdomain in the total domain:
+         i =    28,...,   29         j =     7,...,    9
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          82      my_world_id:          82
+       Position in the cartesian grid:  (10, 2)
+       Neighbors in the cartesian grid:  
+                                                83
+                                      74                  90
+                                                81
+       Location of this subdomain in the total domain:
+         i =    28,...,   29         j =    10,...,   12
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          83      my_world_id:          83
+       Position in the cartesian grid:  (10, 3)
+       Neighbors in the cartesian grid:  
+                                                84
+                                      75                  91
+                                                82
+       Location of this subdomain in the total domain:
+         i =    28,...,   29         j =    13,...,   16
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:          84      my_world_id:          84
+       Position in the cartesian grid:  (10, 4)
+       Neighbors in the cartesian grid:  
+                                                85
+                                      76                  92
+                                                83
+       Location of this subdomain in the total domain:
+         i =    28,...,   29         j =    17,...,   20
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:          85      my_world_id:          85
+       Position in the cartesian grid:  (10, 5)
+       Neighbors in the cartesian grid:  
+                                                86
+                                      77                  93
+                                                84
+       Location of this subdomain in the total domain:
+         i =    28,...,   29         j =    21,...,   23
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          86      my_world_id:          86
+       Position in the cartesian grid:  (10, 6)
+       Neighbors in the cartesian grid:  
+                                                87
+                                      78                  94
+                                                85
+       Location of this subdomain in the total domain:
+         i =    28,...,   29         j =    24,...,   26
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          87      my_world_id:          87
+       Position in the cartesian grid:  (10, 7)
+       Neighbors in the cartesian grid:  
+                                                -1
+                                      79                  95
+                                                86
+       Location of this subdomain in the total domain:
+         i =    28,...,   29         j =    27,...,   29
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          88      my_world_id:          88
+       Position in the cartesian grid:  (11, 0)
+       Neighbors in the cartesian grid:  
+                                                89
+                                      80                  96
+                                                -1
+       Location of this subdomain in the total domain:
+         i =    30,...,   31         j =     4,...,    6
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          89      my_world_id:          89
+       Position in the cartesian grid:  (11, 1)
+       Neighbors in the cartesian grid:  
+                                                90
+                                      81                  97
+                                                88
+       Location of this subdomain in the total domain:
+         i =    30,...,   31         j =     7,...,    9
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          90      my_world_id:          90
+       Position in the cartesian grid:  (11, 2)
+       Neighbors in the cartesian grid:  
+                                                91
+                                      82                  98
+                                                89
+       Location of this subdomain in the total domain:
+         i =    30,...,   31         j =    10,...,   12
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          91      my_world_id:          91
+       Position in the cartesian grid:  (11, 3)
+       Neighbors in the cartesian grid:  
+                                                92
+                                      83                  99
+                                                90
+       Location of this subdomain in the total domain:
+         i =    30,...,   31         j =    13,...,   16
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:          92      my_world_id:          92
+       Position in the cartesian grid:  (11, 4)
+       Neighbors in the cartesian grid:  
+                                                93
+                                      84                 100
+                                                91
+       Location of this subdomain in the total domain:
+         i =    30,...,   31         j =    17,...,   20
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:          93      my_world_id:          93
+       Position in the cartesian grid:  (11, 5)
+       Neighbors in the cartesian grid:  
+                                                94
+                                      85                 101
+                                                92
+       Location of this subdomain in the total domain:
+         i =    30,...,   31         j =    21,...,   23
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          94      my_world_id:          94
+       Position in the cartesian grid:  (11, 6)
+       Neighbors in the cartesian grid:  
+                                                95
+                                      86                 102
+                                                93
+       Location of this subdomain in the total domain:
+         i =    30,...,   31         j =    24,...,   26
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          95      my_world_id:          95
+       Position in the cartesian grid:  (11, 7)
+       Neighbors in the cartesian grid:  
+                                                -1
+                                      87                 103
+                                                94
+       Location of this subdomain in the total domain:
+         i =    30,...,   31         j =    27,...,   29
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          96      my_world_id:          96
+       Position in the cartesian grid:  (12, 0)
+       Neighbors in the cartesian grid:  
+                                                97
+                                      88                 104
+                                                -1
+       Location of this subdomain in the total domain:
+         i =    32,...,   33         j =     4,...,    6
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          97      my_world_id:          97
+       Position in the cartesian grid:  (12, 1)
+       Neighbors in the cartesian grid:  
+                                                98
+                                      89                 105
+                                                96
+       Location of this subdomain in the total domain:
+         i =    32,...,   33         j =     7,...,    9
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          98      my_world_id:          98
+       Position in the cartesian grid:  (12, 2)
+       Neighbors in the cartesian grid:  
+                                                99
+                                      90                 106
+                                                97
+       Location of this subdomain in the total domain:
+         i =    32,...,   33         j =    10,...,   12
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:          99      my_world_id:          99
+       Position in the cartesian grid:  (12, 3)
+       Neighbors in the cartesian grid:  
+                                               100
+                                      91                 107
+                                                98
+       Location of this subdomain in the total domain:
+         i =    32,...,   33         j =    13,...,   16
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:         100      my_world_id:         100
+       Position in the cartesian grid:  (12, 4)
+       Neighbors in the cartesian grid:  
+                                               101
+                                      92                 108
+                                                99
+       Location of this subdomain in the total domain:
+         i =    32,...,   33         j =    17,...,   20
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:         101      my_world_id:         101
+       Position in the cartesian grid:  (12, 5)
+       Neighbors in the cartesian grid:  
+                                               102
+                                      93                 109
+                                               100
+       Location of this subdomain in the total domain:
+         i =    32,...,   33         j =    21,...,   23
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:         102      my_world_id:         102
+       Position in the cartesian grid:  (12, 6)
+       Neighbors in the cartesian grid:  
+                                               103
+                                      94                 110
+                                               101
+       Location of this subdomain in the total domain:
+         i =    32,...,   33         j =    24,...,   26
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:         103      my_world_id:         103
+       Position in the cartesian grid:  (12, 7)
+       Neighbors in the cartesian grid:  
+                                                -1
+                                      95                 111
+                                               102
+       Location of this subdomain in the total domain:
+         i =    32,...,   33         j =    27,...,   29
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:         104      my_world_id:         104
+       Position in the cartesian grid:  (13, 0)
+       Neighbors in the cartesian grid:  
+                                               105
+                                      96                 112
+                                                -1
+       Location of this subdomain in the total domain:
+         i =    34,...,   35         j =     4,...,    6
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:         105      my_world_id:         105
+       Position in the cartesian grid:  (13, 1)
+       Neighbors in the cartesian grid:  
+                                               106
+                                      97                 113
+                                               104
+       Location of this subdomain in the total domain:
+         i =    34,...,   35         j =     7,...,    9
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:         106      my_world_id:         106
+       Position in the cartesian grid:  (13, 2)
+       Neighbors in the cartesian grid:  
+                                               107
+                                      98                 114
+                                               105
+       Location of this subdomain in the total domain:
+         i =    34,...,   35         j =    10,...,   12
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:         107      my_world_id:         107
+       Position in the cartesian grid:  (13, 3)
+       Neighbors in the cartesian grid:  
+                                               108
+                                      99                 115
+                                               106
+       Location of this subdomain in the total domain:
+         i =    34,...,   35         j =    13,...,   16
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:         108      my_world_id:         108
+       Position in the cartesian grid:  (13, 4)
+       Neighbors in the cartesian grid:  
+                                               109
+                                     100                 116
+                                               107
+       Location of this subdomain in the total domain:
+         i =    34,...,   35         j =    17,...,   20
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:         109      my_world_id:         109
+       Position in the cartesian grid:  (13, 5)
+       Neighbors in the cartesian grid:  
+                                               110
+                                     101                 117
+                                               108
+       Location of this subdomain in the total domain:
+         i =    34,...,   35         j =    21,...,   23
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:         110      my_world_id:         110
+       Position in the cartesian grid:  (13, 6)
+       Neighbors in the cartesian grid:  
+                                               111
+                                     102                 118
+                                               109
+       Location of this subdomain in the total domain:
+         i =    34,...,   35         j =    24,...,   26
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:         111      my_world_id:         111
+       Position in the cartesian grid:  (13, 7)
+       Neighbors in the cartesian grid:  
+                                                -1
+                                     103                 119
+                                               110
+       Location of this subdomain in the total domain:
+         i =    34,...,   35         j =    27,...,   29
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:         112      my_world_id:         112
+       Position in the cartesian grid:  (14, 0)
+       Neighbors in the cartesian grid:  
+                                               113
+                                     104                 120
+                                                -1
+       Location of this subdomain in the total domain:
+         i =    36,...,   37         j =     4,...,    6
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:         113      my_world_id:         113
+       Position in the cartesian grid:  (14, 1)
+       Neighbors in the cartesian grid:  
+                                               114
+                                     105                 121
+                                               112
+       Location of this subdomain in the total domain:
+         i =    36,...,   37         j =     7,...,    9
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:         114      my_world_id:         114
+       Position in the cartesian grid:  (14, 2)
+       Neighbors in the cartesian grid:  
+                                               115
+                                     106                 122
+                                               113
+       Location of this subdomain in the total domain:
+         i =    36,...,   37         j =    10,...,   12
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:         115      my_world_id:         115
+       Position in the cartesian grid:  (14, 3)
+       Neighbors in the cartesian grid:  
+                                               116
+                                     107                 123
+                                               114
+       Location of this subdomain in the total domain:
+         i =    36,...,   37         j =    13,...,   16
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:         116      my_world_id:         116
+       Position in the cartesian grid:  (14, 4)
+       Neighbors in the cartesian grid:  
+                                               117
+                                     108                 124
+                                               115
+       Location of this subdomain in the total domain:
+         i =    36,...,   37         j =    17,...,   20
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:         117      my_world_id:         117
+       Position in the cartesian grid:  (14, 5)
+       Neighbors in the cartesian grid:  
+                                               118
+                                     109                 125
+                                               116
+       Location of this subdomain in the total domain:
+         i =    36,...,   37         j =    21,...,   23
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:         118      my_world_id:         118
+       Position in the cartesian grid:  (14, 6)
+       Neighbors in the cartesian grid:  
+                                               119
+                                     110                 126
+                                               117
+       Location of this subdomain in the total domain:
+         i =    36,...,   37         j =    24,...,   26
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:         119      my_world_id:         119
+       Position in the cartesian grid:  (14, 7)
+       Neighbors in the cartesian grid:  
+                                                -1
+                                     111                 127
+                                               118
+       Location of this subdomain in the total domain:
+         i =    36,...,   37         j =    27,...,   29
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:         120      my_world_id:         120
+       Position in the cartesian grid:  (15, 0)
+       Neighbors in the cartesian grid:  
+                                               121
+                                     112                  -1
+                                                -1
+       Location of this subdomain in the total domain:
+         i =    38,...,   39         j =     4,...,    6
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:         121      my_world_id:         121
+       Position in the cartesian grid:  (15, 1)
+       Neighbors in the cartesian grid:  
+                                               122
+                                     113                  -1
+                                               120
+       Location of this subdomain in the total domain:
+         i =    38,...,   39         j =     7,...,    9
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:         122      my_world_id:         122
+       Position in the cartesian grid:  (15, 2)
+       Neighbors in the cartesian grid:  
+                                               123
+                                     114                  -1
+                                               121
+       Location of this subdomain in the total domain:
+         i =    38,...,   39         j =    10,...,   12
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:         123      my_world_id:         123
+       Position in the cartesian grid:  (15, 3)
+       Neighbors in the cartesian grid:  
+                                               124
+                                     115                  -1
+                                               122
+       Location of this subdomain in the total domain:
+         i =    38,...,   39         j =    13,...,   16
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:         124      my_world_id:         124
+       Position in the cartesian grid:  (15, 4)
+       Neighbors in the cartesian grid:  
+                                               125
+                                     116                  -1
+                                               123
+       Location of this subdomain in the total domain:
+         i =    38,...,   39         j =    17,...,   20
+       Dimensions of this subdomain:
+         ie =    8     je =   10     ke =   50
+  
+  
+       my_cart_id:         125      my_world_id:         125
+       Position in the cartesian grid:  (15, 5)
+       Neighbors in the cartesian grid:  
+                                               126
+                                     117                  -1
+                                               124
+       Location of this subdomain in the total domain:
+         i =    38,...,   39         j =    21,...,   23
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:         126      my_world_id:         126
+       Position in the cartesian grid:  (15, 6)
+       Neighbors in the cartesian grid:  
+                                               127
+                                     118                  -1
+                                               125
+       Location of this subdomain in the total domain:
+         i =    38,...,   39         j =    24,...,   26
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  
+  
+       my_cart_id:         127      my_world_id:         127
+       Position in the cartesian grid:  (15, 7)
+       Neighbors in the cartesian grid:  
+                                                -1
+                                     119                  -1
+                                               126
+       Location of this subdomain in the total domain:
+         i =    38,...,   39         j =    27,...,   29
+       Dimensions of this subdomain:
+         ie =    8     je =    9     ke =   50
+  

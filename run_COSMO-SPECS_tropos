@@ -1,0 +1,45 @@
+#!/bin/ksh
+
+
+# --------------------------
+# number of cpus 
+# --------------------------
+NTASKS=128
+
+#important:
+#if you modify the the number of NTASKS you have to modify this also in 
+#INPUT_ORG_${CASE} for nprocx and nprocy (NTASKS = nprocx * nprocy )
+
+rm YU*
+
+# --------------------------
+# DOMAIN SIZE
+# --------------------------
+
+#CASE='122x112'
+#CASE='42x32'
+ CASE="42x32"
+if [[ $CASE = '12x12' ]]; then
+   NTASKS=16
+fi
+echo "CASE: " $CASE
+cp -p INPUT_DYN_${CASE} INPUT_DYN
+cp -p INPUT_IO_${CASE} INPUT_IO
+cp -p INPUT_ORG_${CASE} INPUT_ORG
+
+
+# ---------------------------
+# how to start the specs model
+# ---------------------------
+
+
+START="mpirun -np ${NTASKS}"
+
+MODEL="${PWD}/psbm_fd4_tropos"
+
+date
+${START} ${MODEL} 2>&1 | tee output_eriswill.log
+date
+
+
+

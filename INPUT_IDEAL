@@ -1,0 +1,6 @@
+&ARTIFCTL
+ ! ivctype=1,
+ ! irefatm=1,
+ ! p0sl=100000.0,
+ ! t0sl=273.15,
+ /END

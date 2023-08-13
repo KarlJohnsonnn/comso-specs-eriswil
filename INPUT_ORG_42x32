@@ -1,0 +1,85 @@
+ &LMGRID
+    startlat_tot  = -0.08,  startlon_tot = -0.08,
+    pollat = 42.920, pollon=-172.149,
+    dlon = 0.005, dlat = 0.005,
+    ie_tot=42, je_tot=32, ke_tot=50,
+ /END
+
+
+ &SBM_PAR
+    !lsbm=.false., iimfr=0, ifrier=0,idepo=0, imelt=0,ikofr=0,ibrea=1,ikoll=2,iice=0,
+    lsbm=.true., iimfr=10, ifrier=1,idepo=0, imelt=1,ikofr=1,ibrea=1,ikoll=2,iice=1,
+    iinsol=7,ikeis=1,iideal=1,epsi=0.5,itimemax=4,iap=1,ihomfr=1,
+    ! max number of SPECS time steps per mp advection step (1 ... no dynamic decision)
+    mpstepsmax=1,
+    ! FD4 block size
+    fd4_blsize=2,2,4
+    ! number of time steps with NetCDF output
+    ! fd4_nc4steps=193, ! every 15 min for 48 hrs
+    ! fd4_nc4steps=76, ! every 15 min for 19 hrs
+    nc_output_hcomb = 0,3600,5,
+    outputname = '3D_1691916708',
+    output_groups = '1100001'
+
+    ! number of time steps with Vis5D output
+    !fd4_v5dsteps=21,
+    ! fd4_lbmethod, see data_sbm.f90 for values, 7 is the recommended Hilbert SFC
+    fd4_lbmethod=3,
+    !fd4_lbtol=1.0,
+    ! automatically decide whether load balancing is beneficial (ignore lbtol)
+    fd4_lbauto = .true.,
+    ! runge kutta method, see ADVEC/sbm_runge_kutta.f90
+    !fd4_rkmethod = 1,
+    ! FD4 specialties
+    !fd4_mdsz = 2,2,
+    !fd4_blkmap = .false.,
+    !dnap_init=1000
+    dnap_init=1000
+    !dnap_init=1000
+    dimensions=3
+    lflare=.false.
+ /END
+ &FLARE_SBM
+    flare_starttime         = 1800.
+    flare_endtime           = 2010.
+    flare_btime             = 60.
+    flare_restart_intervall = 3600. 
+    flare_hight             =-43
+    flare_emission          = 8d8
+    flare_effect_temp       = 268
+ /END
+
+ &RUNCTL
+  dt=0.25,
+  hstart=0.0,   hstop=1.0,
+  ydate_ini='2023012509',
+  ydate_bd='2023012500',
+  lreproduce=.TRUE., luseobs=.FALSE.,
+  lphys=.TRUE.,
+  nboundlines=3,
+  luse_rttov=.FALSE., leps=.FALSE.,
+  nprocx=16, nprocy=8, nprocio=0,
+  lreorder=.FALSE., itype_timing=4,
+  ldatatypes=.TRUE., ltime_barrier=.FALSE., ncomm_type=3,
+  idbg_level=20, lartif_data=.FALSE.,
+ /END
+
+
+ &TUNING
+  clc_diag  =   0.75,
+  pat_len   = 500.0,
+  rlam_heat =   1.0,
+  rlam_mom  =   0.0,
+  rat_lam   =   1.0,
+  rat_can   =   1.0,
+  rat_sea   =  20.0,
+  c_lnd     =   2.0,
+  c_soil    =   1.0,
+  c_sea     =   1.5,
+  z0m_dia   =   0.2,
+  crsmin    = 150.0,
+  rat_sea   =  20.0,
+  wichfakt  =   0.0,
+  qc0       =   0.0002,
+ /END
+

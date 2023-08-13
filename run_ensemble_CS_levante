@@ -1,0 +1,125 @@
+#!/bin/bash
+
+# Function: replace_params_and_run
+# It replaces the parameters in your input files, submits the job, waits for a node to be assigned, and prints out a message with the job details.
+replace_params_and_run() {
+    # check wheter flare is active or not
+    lflare=".true."
+    [[ "$1" == "no" ]] && lflare=".false."
+    
+    # Construct the output file name based on the parameters
+    starttime=$(date '+%s')
+    outputname3d="3D_$starttime"
+    outputnameM="$starttime"
+
+    # Replace the parameters in the input files
+    sed -i "s/flare_emission=.*/flare_emission=$1/g" "INPUT_ORG_$DOMAIN"
+    sed -i "s/dnap_init=.*/dnap_init=$2/g" "INPUT_ORG_$DOMAIN"
+    sed -i "s/lflare=.*/lflare=$lflare/g" "INPUT_ORG_$DOMAIN"
+    sed -i "/outputname/ s/'.*'/'$outputname3d'/g" "INPUT_ORG_$DOMAIN"
+    sed -i "/stationlist_tot/ s/'.*'/'$outputnameM'/g" INPUT_DIA
+
+    # Submit the job
+    job_id=$(sbatch --parsable $RUN_SCRIPT)
+    # Wait for a node to be assigned
+    nodeX=$(wait_for_node "$job_id")
+
+    # Construct and print out the job details
+    echo "job id $job_id  starts at $starttime  on node $nodeX  with parameter:  FE = $1   BINP = $2   files = $outputname3d"
+
+    # Call the function with the input Fortran namelist file and desired JSON output file
+    add_metadata_to_json "$starttime" "$job_id" "$nodeX"
+    
+    # wait for INPUT* files to be read
+    sleep 20
+}
+
+# Function: wait_for_node
+# Checks if a node has been assigned to a job. If not, it waits for 1 second and checks again.
+wait_for_node() {
+    nodeX=$(squeue -j "$1" -o "%N" | tail -n +2)
+    # Keep looping until nodeX matches the pattern "lXXXXX"
+    while ! [[ $nodeX =~ ^l[0-9]{5}$ ]]; do
+        sleep 4
+        nodeX=$(squeue -j "$1" -o "%N" | tail -n +2)
+    done
+    echo $nodeX
+}
+
+# Processes an input FORTRAN namelist, extracts its content, and appends it
+# to an existing JSON file as a new "run entry". Namelist variables are organized
+# under their respective sections and converted into JSON format.
+add_metadata_to_json() {
+    local input_file="INPUT_ORG_$DOMAIN"
+    local output_json="output.json"
+    local current_section=""
+    local json_output=""
+
+    # Remove the last "}" from the output JSON to add the new run entry
+    sed -i '$ d' "$output_json"
+
+    # Append new run entry to the JSON file
+    echo "," >> "$output_json"
+    echo "  \"$starttime\": {" >> "$output_json"
+    echo "    \"starttime\": \"$1\"," >> "$output_json"
+    echo "    \"job_id\": \"$2\"," >> "$output_json"
+    echo "    \"nodeX\": \"$3\"," >> "$output_json"
+    echo "    \"domain\": \"$DOMAIN\"," >> "$output_json"
+
+    # Read the input file line by line
+    while IFS= read -r line; do
+        # Skip empty lines and lines starting with !
+        [[ -z "$line" || ${line} =~ ^[[:space:]]*! ]] && continue
+
+        # Check if the line starts a new section
+        [[ "$line" =~ ^[[:space:]]*\& ]] && current_section="${line//[& ]/}" && continue
+
+        # If the line contains "/END", it signifies the end of a section
+        [[ "$line" =~ \/END ]] && current_section="" && continue
+
+        # If we're in a section, split the variable assignments and process each one
+        if [[ -n "$current_section" ]]; then
+            # Remove trailing commas
+            line=${line%,}
+            IFS=',' read -ra assignments <<< "$line"
+            for assignment in "${assignments[@]}"; do
+                # Separate variable and value
+                key=$(echo "$assignment" | cut -d'=' -f1 | xargs)
+                value=$(echo "$assignment" | cut -d'=' -f2 | xargs)
+
+                # Append to the JSON string
+                json_output+="    \"$current_section.$key\": \"$value\",\n"
+            done
+        fi
+    done < "$input_file"
+
+    # Remove the last comma and close the JSON
+    json_output=${json_output%,}
+    json_output+="  }"
+    json_output+="\n}"
+
+    # Write to output file
+    echo -e "$json_output" >> "$output_json"
+}
+
+#
+################# MAIN ###################
+#
+
+# Define constants
+RUN_SCRIPT=run_COSMO-SPECS_levante
+DOMAIN="42x32"
+flare_emission_values=("no")
+background_inp_values=("10" "100", "1000")
+
+# Print out some initial information
+echo -e "\nsubmit jobs and wait unitl a node is assigned to read the INPUT* files"
+echo -e "ensemble run date: $(date '+%Y-%m-%d  %H:%M:%S')"
+
+# Loop over the different parameter combinations
+for background_inp in "${background_inp_values[@]}"; do
+    for flare_emission in "${flare_emission_values[@]}"; do
+        # Call replace_params_and_run for each combination of parameters
+        replace_params_and_run "$flare_emission" "$background_inp"
+    done
+done
