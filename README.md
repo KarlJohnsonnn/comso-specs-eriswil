@@ -71,9 +71,67 @@ tar xzvf cosmo-specs-eriswill-testcase_ic-bc-cosin-data.tar.gz
 
 * Meteogramm data output in `M_Eriswil_SPECS.nc`?
 
-* **TODO**:
 
-    * provide example plots and scripts to generate them
+# Python quicklook and analysis toolbox
+
+# MultiPanelPlot Class
+
+The `MultiPanelPlot` class is designed to facilitate the visualization of multi-panel plots for various types of data, including profiles, time series, and area plots. It provides interactive capabilities to explore the data, and it supports customization of plot parameters.
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Examples](#examples)
+- [API Reference](#api-reference)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Installation
+
+To use the `MultiPanelPlot` class, you need to import it from the appropriate module in your code. You can also clone this repository to access the class directly.
+
+## Usage
+
+The `MultiPanelPlot` class is initialized with the following parameters:
+
+- `datasets` (dict of str: xr.Dataset): A dictionary of data sets for plotting.
+- `varname` (str): The variable name in the data sets.
+- `mode` (str): The plotting mode ('profile', 'timeseries', or 'area').
+- Other optional parameters for customization, such as `timestep0`, `timeframe`, `vmin`, `vmax`, etc.
+
+Once initialized, you can use the `display()` method to render the plot according to the chosen mode. Additionally, you can use the `interactive()` method to create interactive plots with sliders for exploring the data.
+
+## Examples
+
+Here are a few examples of how to use the `MultiPanelPlot` class:
+
+### Example 1: Profile Plot
+
+```python
+# Import necessary modules and classes
+import xarray as xr
+from your_module import MultiPanelPlot
+
+# Create example datasets
+datasets = {
+    'Dataset1': xr.Dataset({'variable1': ...}),
+    'Dataset2': xr.Dataset({'variable1': ...})
+}
+
+# Instantiate the MultiPanelPlot class
+mpp = MultiPanelPlot(
+    datasets=datasets,
+    varname='variable1',
+    mode='profile',
+    timestep0=0,
+    timeframe='single'
+)
+
+# Display an interactive profile plot
+mpp.interactive()
+````
+
 
 ---
 
