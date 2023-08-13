@@ -130,8 +130,39 @@ mpp = MultiPanelPlot(
 
 # Display an interactive profile plot
 mpp.interactive()
-````
+```
 
+## Example 2: Time Series Plot
+
+```
+# Instantiate the MultiPanelPlot class
+mpp = MultiPanelPlot(
+    datasets=datasets,
+    varname='variable1',
+    mode='timeseries',
+    timestep0=0,
+    timeframe='single'
+)
+
+# Display an interactive time series plot
+mpp.interactive()
+```
+
+### Example 3: Area Plot
+
+```
+# Instantiate the MultiPanelPlot class
+mpp = MultiPanelPlot(
+    datasets=datasets,
+    varname='variable1',
+    mode='area',
+    timestep0=0,
+    timeframe='single'
+)
+
+# Display an interactive area plot
+mpp.interactive()
+```
 
 ---
 
