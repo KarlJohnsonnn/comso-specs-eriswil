@@ -134,7 +134,7 @@ mpp.interactive()
 
 ## Example 2: Time Series Plot
 
-```
+```python
 # Instantiate the MultiPanelPlot class
 mpp = MultiPanelPlot(
     datasets=datasets,
@@ -150,7 +150,7 @@ mpp.interactive()
 
 ### Example 3: Area Plot
 
-```
+```python
 # Instantiate the MultiPanelPlot class
 mpp = MultiPanelPlot(
     datasets=datasets,
