@@ -9,5 +9,5 @@
   lmeteogram_specs=.TRUE.,
   n0gp=0, 
   nincgp=20,
-  stationlist_tot= 0, 0, 47.0799, 7.8507, '1691916708',
-/
+  stationlist_tot= 0, 0, 47.0799, 7.8507, '20230815_122725',
+/END

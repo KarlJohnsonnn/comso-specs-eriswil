@@ -28,7 +28,7 @@
        mpstepsmax              1                  1        I 
        topo_type               0                  0        I 
        epsi               0.5000             0.5000        R 
-       dnap_init       1000.0000           566.0000        R 
+       dnap_init        100.0000           566.0000        R 
        itmax                   1                  1        I 
        SMAX                    1                  1        I 
        anz                    30                 30        I 
@@ -69,16 +69,32 @@
        fd4_mdadapt             F                  F        L 
        fd4_lbacc          0.9900             0.9900        R 
        fd4_blkmap              T                  T        L 
-       lflare                  F                  F        L 
+       lflare                  T                  F        L 
   
+  
+ 0     NAMELIST:  flare_sbm
+       --------------------
+  
+      Variable               Actual VaDefault Value      Format
+       flare_emission      800000000.00   10000000.0000    R 
+       flare_particle_radius       0.00      0.0000        R 
+       flare_effect_temp         268.00    260.0000        R 
+       itimemax_dumm          10                 10        I 
+       flare_btime      180.0000            30.0000        R 
+       flare_startti   5700.0000            60.0000        R 
+       flare_endtime   5940.0000           300.0000        R 
+       flare_restart   1500.0000            60.0000        R 
+       flare_lat         47.0772            47.0772        R 
+       flare_lon          7.8444             7.8444        R 
+       flare_hight      -43.0000           100.0000        R 
   
 0     NAMELIST:  runctl
       -----------------
   
       Variable      Actual Value      Default Value      Format
        hstart             0.0000             0.0000        R 
-       nstop               14400                  0        I 
-       hstop              1.0000             0.0000        R 
+       nstop               43200                  0        I 
+       hstop              3.0000             0.0000        R 
        dt                 0.2500            30.0000        R 
        ydate_ini    2023012509                            C*8
        ydate_end                                          C*8
@@ -330,7 +346,7 @@
   
        Selected grid points:
        Nr.:    i-index   j-index
-         1        17        17    47.080     7.851   1691916708          
+         1        17        17    47.080     7.851   20230815_122725     
   
       Mean values:
       Variable      Actual Value      Default Value      Format

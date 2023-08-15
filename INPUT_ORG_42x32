@@ -17,8 +17,8 @@
     ! number of time steps with NetCDF output
     ! fd4_nc4steps=193, ! every 15 min for 48 hrs
     ! fd4_nc4steps=76, ! every 15 min for 19 hrs
-    nc_output_hcomb = 0,3600,5,
-    outputname = '3D_1691916708',
+    nc_output_hcomb = 0,10800,15,
+    outputname = 3D_20230815_122725
     output_groups = '1100001'
 
     ! number of time steps with Vis5D output
@@ -34,24 +34,24 @@
     !fd4_mdsz = 2,2,
     !fd4_blkmap = .false.,
     !dnap_init=1000
-    dnap_init=1000
+    dnap_init= 100
     !dnap_init=1000
     dimensions=3
-    lflare=.false.
+    lflare= .true.
  /END
  &FLARE_SBM
-    flare_starttime         = 1800.
-    flare_endtime           = 2010.
-    flare_btime             = 60.
-    flare_restart_intervall = 3600. 
+    flare_starttime         = 5700.
+    flare_endtime           = 5940.
+    flare_btime             = 180.
+    flare_restart_intervall = 1500. 
     flare_hight             =-43
-    flare_emission          = 8d8
+    flare_emission          = 8e8
     flare_effect_temp       = 268
  /END
 
  &RUNCTL
   dt=0.25,
-  hstart=0.0,   hstop=1.0,
+  hstart=0.0,   hstop=3.0,
   ydate_ini='2023012509',
   ydate_bd='2023012500',
   lreproduce=.TRUE., luseobs=.FALSE.,

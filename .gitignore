@@ -3,3 +3,5 @@
 *.err
 python/plots/
 YU*
+COS_out/*
+*.json
