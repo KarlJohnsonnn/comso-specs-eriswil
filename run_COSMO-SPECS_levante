@@ -59,12 +59,19 @@ rm YU*
 # DOMAIN SIZE
 # --------------------------
 
-#CASE='122x112'
+# Default value for CASE
 CASE='42x32'
-#CASE="12x12"
+
+# If an argument is provided, use it to set CASE
+if [ "$#" -eq 1 ]; then
+    CASE=$1
+fi
+
 if [[ $CASE = '12x12' ]]; then
    NTASKS=16
 fi
+
+d
 echo "CASE: " $CASE
 cp -p INPUT_DYN_${CASE} INPUT_DYN
 cp -p INPUT_IO_${CASE} INPUT_IO

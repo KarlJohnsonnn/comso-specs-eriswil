@@ -15,8 +15,8 @@
 !  lbdana=.TRUE.,
  &GRIBIN
   lbdana=.FALSE.,
-  ydirini='./COS_in/2023012500_12x12/',
-  ydirbd ='./COS_in/2023012500_12x12/',
+  ydirini='./COS_in/2023012500_42x32/',
+  ydirbd ='./COS_in/2023012500_42x32/',
   lchkini=.TRUE.,
   hincbound= 3.0,
   lchkbd =.TRUE.,
@@ -69,5 +69,5 @@
   yvarpl='',
   yvarzl='',
 
-  ydir='./COS_out/20230125_12x12/',
+  ydir='./COS_out/20230125_42x32/',
  /END

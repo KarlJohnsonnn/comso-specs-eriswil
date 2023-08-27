@@ -18,7 +18,7 @@
     ! fd4_nc4steps=193, ! every 15 min for 48 hrs
     ! fd4_nc4steps=76, ! every 15 min for 19 hrs
     nc_output_hcomb = 0,10800,15,
-    outputname = 3D_20230815_122725
+    outputname = 3D_20230826_173042
     output_groups = '1100001'
 
     ! number of time steps with Vis5D output
@@ -34,18 +34,20 @@
     !fd4_mdsz = 2,2,
     !fd4_blkmap = .false.,
     !dnap_init=1000
-    dnap_init= 100
+    dnap_init= 10
     !dnap_init=1000
     dimensions=3
     lflare= .true.
  /END
+
+ # case 25.01.2023 Eriswil
  &FLARE_SBM
-    flare_starttime         = 5700.
-    flare_endtime           = 5940.
-    flare_btime             = 180.
-    flare_restart_intervall = 1500. 
-    flare_hight             =-43
-    flare_emission          = 8e8
+    flare_starttime         = 5286.
+    flare_endtime           = 9000.
+    flare_btime             = 340.
+    flare_restart_intervall = 1420. 
+    flare_hight             =-41
+    flare_emission          = 8e9
     flare_effect_temp       = 268
  /END
 

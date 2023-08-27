@@ -18,7 +18,7 @@ rm YU*
 
 #CASE='122x112'
 #CASE='42x32'
- CASE="42x32"
+ CASE="12x12"
 if [[ $CASE = '12x12' ]]; then
    NTASKS=16
 fi

@@ -51,7 +51,7 @@
   lphys=.TRUE.,
   nboundlines=3,
   luse_rttov=.FALSE., leps=.FALSE.,
-  nprocx= 4 nprocy= 4, nprocio=0,
+  nprocx=16 nprocy=8, nprocio=0,
   lreorder=.FALSE., itype_timing=4,
   ldatatypes=.TRUE., ltime_barrier=.FALSE., ncomm_type=3,
   idbg_level=20, lartif_data=.FALSE.,

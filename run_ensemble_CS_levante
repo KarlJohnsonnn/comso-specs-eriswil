@@ -28,7 +28,7 @@ replace_params_and_run() {
     sed -i "/stationlist_tot/ s/'.*'/'$outputnameM'/g" INPUT_DIA
 
     # Submit the job
-    job_id=$(sbatch --parsable $RUN_SCRIPT)
+    job_id=$(sbatch --parsable $RUN_SCRIPT $DOMAIN)
     # Wait for a node to be assigned
     nodeX=$(wait_for_node "$job_id")
 
@@ -101,8 +101,11 @@ startdtime=$(date +%Y%m%d_%H%M%S)
 
 # Define constants
 RUN_SCRIPT=run_COSMO-SPECS_levante
+
+#DOMAIN="12x12"
 DOMAIN="42x32"
 #DOMAIN="122x112"
+
 flare_emission_values=("no" "8e7" "8e8" "8e9")
 background_inp_values=("10" "100" "1000")
 
