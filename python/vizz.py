@@ -302,7 +302,7 @@ class MultiPanelPlot:
         """
        
         if isinstance(datasets, list):
-            self.datasets = read_file_list(datasets, varnames=[varname, 'vt', 'ut', 'wt', 't'])
+            self.datasets = read_file_list(datasets, varnames=[varname, 'vt', 'ut', 'wt', 't', 'rho'])
 
         elif isinstance(datasets, dict):
             self.datasets = copy.deepcopy(datasets)

@@ -72,97 +72,91 @@ tar xzvf cosmo-specs-eriswill-testcase_ic-bc-cosin-data.tar.gz
 * Meteogramm data output in `M_Eriswil_SPECS.nc`?
 
 
-# Python quicklook and analysis toolbox
+# MultiPanelPlot class
+## Introduction
+The MultiPanelPlot class is a versatile tool designed to visualize multi-panel plots, especially tailored for visualizing specific data types. The class is part of the vizz module and offers various methods and functionalities to customize and enhance the visual representation of data.
 
-# MultiPanelPlot Class
+## Dependencies
+- numpy
+- xarray
+- matplotlib
+- ... [other libraries from vizz.py]
 
-The `MultiPanelPlot` class is designed to facilitate the visualization of multi-panel plots for various types of data, including profiles, time series, and area plots. It provides interactive capabilities to explore the data, and it supports customization of plot parameters.
+## Initialization
+To create a multi-panel plot, initialize an instance of the MultiPanelPlot class as shown below:
 
-## Table of Contents
+```python
+import vizz
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Examples](#examples)
-- [API Reference](#api-reference)
-- [Contributing](#contributing)
-- [License](#license)
+plot = vizz.MultiPanelPlot(
+    data,
+    metadata=metadata,
+    varname='nf',
+    nrows=1,
+    ncols=2,
+    mode='area',
+    vmin=1.0,
+    vmax=1.0e4,
+    ...
+)
+```
 
-## Installation
+Parameters:
 
-To use the `MultiPanelPlot` class, you need to import it from the appropriate module in your code. You can also clone this repository to access the class directly.
+- data: Data to be visualized.
+metadata: Metadata associated with the data.
+varname: Name of the variable to be plotted.
+nrows and ncols: Number of rows and columns for the multi-panel plot.
+- mode: Visualization mode. E.g., 'area', 'profile'.
+- vmin and vmax: Minimum and maximum values for the color scale.
+- ... [other parameters]
 
-## Usage
+## Features & Methods
+### Add Ruler to Plot
+You can add a ruler to the plot to measure distances or highlight specific regions:
 
-The `MultiPanelPlot` class is initialized with the following parameters:
+```python
+plot.add_ruler(lat_start, lon_start, lat_end, lon_end)
+```
 
-- `datasets` (dict of str: xr.Dataset): A dictionary of data sets for plotting.
-- `varname` (str): The variable name in the data sets.
-- `mode` (str): The plotting mode ('profile', 'timeseries', or 'area').
-- Other optional parameters for customization, such as `timestep0`, `timeframe`, `vmin`, `vmax`, etc.
+### Display and Save the Plot
+To display the plot:
 
-Once initialized, you can use the `display()` method to render the plot according to the chosen mode. Additionally, you can use the `interactive()` method to create interactive plots with sliders for exploring the data.
+```python
+plot.display(timestep=i, title=tit)
+```
+
+### To save the plot to a file:
+
+```python
+plot.save_figure(f'/path/to/save/{str(i).zfill(3)}_nf.png')
+```
 
 ## Examples
-
-Here are a few examples of how to use the `MultiPanelPlot` class:
-
-### Example 1: Profile Plot
-
+### Area Mode Visualization
 ```python
-# Import necessary modules and classes
-import xarray as xr
-from your_module import MultiPanelPlot
-
-# Create example datasets
-datasets = {
-    'Dataset1': xr.Dataset({'variable1': ...}),
-    'Dataset2': xr.Dataset({'variable1': ...})
-}
-
-# Instantiate the MultiPanelPlot class
-mpp = MultiPanelPlot(
-    datasets=datasets,
-    varname='variable1',
-    mode='profile',
-    timestep0=0,
-    timeframe='single'
-)
-
-# Display an interactive profile plot
-mpp.interactive()
-```
-
-## Example 2: Time Series Plot
-
-```python
-# Instantiate the MultiPanelPlot class
-mpp = MultiPanelPlot(
-    datasets=datasets,
-    varname='variable1',
-    mode='timeseries',
-    timestep0=0,
-    timeframe='single'
-)
-
-# Display an interactive time series plot
-mpp.interactive()
-```
-
-### Example 3: Area Plot
-
-```python
-# Instantiate the MultiPanelPlot class
-mpp = MultiPanelPlot(
-    datasets=datasets,
-    varname='variable1',
+plot1 = vizz.MultiPanelPlot(
+    data,
+    metadata=metadata,
+    varname='nf',
+    nrows=1,
+    ncols=2,
     mode='area',
-    timestep0=0,
-    timeframe='single'
+    ...
 )
-
-# Display an interactive area plot
-mpp.interactive()
+plot1.display(timestep=i, title=tit)
 ```
 
----
+### Profile Mode Visualization
+```python
 
+plot2 = vizz.MultiPanelPlot(
+    data,
+    metadata=metadata,
+    varname='nf',
+    nrows=1,
+    ncols=2,
+    mode='profile',
+    ...
+)
+```
