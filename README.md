@@ -82,6 +82,22 @@ The MultiPanelPlot class is a versatile tool designed to visualize multi-panel p
 - matplotlib
 - ... [other libraries from vizz.py]
 
+## Reading in the data
+```python
+import vizz
+
+root_path = '/work/bb1262/user/schimmel/cosmo-specs-torch/'
+test_case = 'cs-eriswil__20230821_172639'
+data_path = root_path + f'/cosmo-specs/testcases/RUN_ERISWILL_TESTCASE01/{test_case}/'
+
+with open(meta_pdata_path + f'{test_case}.json'ath) as f:
+   metadata = json.load(f)
+
+d3_files = [data_path + '3D_' + file + '.nc' for file in metadata.keys()]
+
+data = vizz.read_file_list(d3_files, varnames=['nf', 'vt', 'ut', 'wt', 't', 'rho', 'qw'])
+```
+
 ## Initialization
 To create a multi-panel plot, initialize an instance of the MultiPanelPlot class as shown below:
 
