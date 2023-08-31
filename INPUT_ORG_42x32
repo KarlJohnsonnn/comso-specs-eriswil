@@ -17,8 +17,8 @@
     ! number of time steps with NetCDF output
     ! fd4_nc4steps=193, ! every 15 min for 48 hrs
     ! fd4_nc4steps=76, ! every 15 min for 19 hrs
-    nc_output_hcomb = 0,10800,15,
-    outputname = 3D_20230826_173042
+    nc_output_hcomb = 0,1800,15,
+    outputname = 3D_20230831_095821
     output_groups = '1100001'
 
     ! number of time steps with Vis5D output
@@ -42,18 +42,18 @@
 
  # case 25.01.2023 Eriswil
  &FLARE_SBM
-    flare_starttime         = 5286.
+    flare_starttime         = 286.
     flare_endtime           = 8465.
     flare_btime             = 340.
     flare_restart_intervall = 1420. 
     flare_hight             =-41
-    flare_emission          = 8e3
+    flare_emission          = 8e9
     flare_effect_temp       = 268
  /END
 
  &RUNCTL
   dt=0.25,
-  hstart=0.0,   hstop=3.0,
+  hstart=0.0,   hstop=.5,
   ydate_ini='2023012509',
   ydate_bd='2023012500',
   lreproduce=.TRUE., luseobs=.FALSE.,

@@ -106,8 +106,8 @@ RUN_SCRIPT=run_COSMO-SPECS_levante
 DOMAIN="42x32"
 #DOMAIN="122x112"
 
-flare_emission_values=("no" "8e7" "8e8" "8e9")
-background_inp_values=("10" "100" "1000")
+flare_emission_values=("no" "8e7" "8e9")
+background_inp_values=("10")
 
 # initialize metadata file
 outputnameJson="cs-eriswil__$startdtime.json"
