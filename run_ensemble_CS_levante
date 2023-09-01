@@ -40,6 +40,9 @@ replace_params_and_run() {
     
     # wait for INPUT* files to be read
     sleep 20
+
+    # remove syntax errors
+    #modify_json "$outputnameJson"
 }
 
 # Function: wait_for_node
@@ -86,10 +89,11 @@ add_metadata_to_json() {
         done < "$input_file"
     done
 
-    json_output=${json_output%,}
-    json_output+="  }\n}"
+    json_output="${json_output:0:${#json_output}-3}"    # remove the last comma
+    json_output+=" \n  }\n}"
 
     echo -e "$json_output" >> "$output_json"
+    
 }
 
 
@@ -106,7 +110,7 @@ RUN_SCRIPT=run_COSMO-SPECS_levante
 DOMAIN="42x32"
 #DOMAIN="122x112"
 
-flare_emission_values=("no" "8e7" "8e9")
+flare_emission_values=("no" "8e7")
 background_inp_values=("10")
 
 # initialize metadata file
@@ -127,3 +131,6 @@ for background_inp in "${background_inp_values[@]}"; do
         replace_params_and_run "$flare_emission" "$background_inp" "$outputnameJson"
     done
 done
+
+# remove line 2 and 3 form the json file (-> removes a comma and an empty line)
+sed -i '2,3d' "$outputnameJson"
