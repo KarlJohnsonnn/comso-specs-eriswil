@@ -2,6 +2,7 @@ import numpy as np
 import xarray as xr
 import datetime
 from typing import Dict
+from tqdm.auto import tqdm
 import copy
 import multiprocessing
 import concurrent.futures
@@ -11,6 +12,7 @@ import matplotlib.colors as colors
 import matplotlib.patheffects as PathEffects
 import matplotlib.cm as cm
 import matplotlib.dates as md
+import seaborn as sns
 import re
 from ipywidgets import interact, widgets, fixed
 
@@ -368,9 +370,8 @@ class MultiPanelPlot:
         if nrows*ncols==1:
             self.axes = np.array(self.axes)
         
-        self.fig.subplots_adjust(hspace=0.3, wspace=0.15, left=0.13, right=0.9, top=0.82, bottom=0.17)  # make space for colorbar
         self.timestep = 0 if (timestep0 is None and timeframe == 'single') else (timestep0 if timestep0 is not None else [0, 10])
-        print(self.timestep)
+
         self.init_first_plot(self.timestep)
         if title:
             self.fig.suptitle(title, weight='bold')
@@ -381,7 +382,7 @@ class MultiPanelPlot:
         """
         Creates and sets a color bar for the figure.
         """
-        cbar_ax = self.fig.add_axes([0.89, 0.21, 0.01, 0.6])  # adjust these values as needed
+        cbar_ax = self.fig.add_axes([0.91, 0.21, 0.01, 0.6])  # adjust these values as needed
         cbar = self.fig.colorbar(
             cm.ScalarMappable(norm=self.norm, cmap=self.cmap), 
             cax=cbar_ax, 
@@ -425,8 +426,13 @@ class MultiPanelPlot:
             self._init_timeseries_plot()         
         elif self.mode == 'area':
             self._init_area_plot(timestep)
+        elif self.mode == 'single_spectra':
+            self._init_single_spectra_plot(timestep)
         else:
             raise ValueError('Wrong mode given. Available: "profile", "timeseries", "area"')
+        
+        self.fig.subplots_adjust(hspace=0.3, wspace=0.15, left=0.13, right=0.9, top=0.82, bottom=0.17)  # make space for colorbar
+        
 
     def _init_profile_plot(self, timestep: int) -> None:
         """
@@ -444,7 +450,9 @@ class MultiPanelPlot:
         
         self.fig.text(0.5, 0.06, 'radius [m]', ha='center', va='center')
         self.fig.text(0.1, 0.5, 'height [km]', ha='center', va='center', rotation='vertical')
-        self.set_colorbar()            
+        self.set_colorbar()      
+        self.fig.subplots_adjust(hspace=0.3, wspace=0.15, left=0.13, right=0.9, top=0.82, bottom=0.17)  # make space for colorbar
+              
 
 
     def _init_timeseries_plot(self) -> None:
@@ -467,6 +475,9 @@ class MultiPanelPlot:
         self.fig.text(0.5, 0.07, 'time [UTC]', ha='center', va='center')
         self.fig.text(0.1, 0.5, 'height [km]', ha='center', va='center', rotation='vertical')
         self.set_colorbar()
+        
+        self.fig.subplots_adjust(hspace=0.3, wspace=0.15, left=0.13, right=0.9, top=0.82, bottom=0.17)  # make space for colorbar
+        
 
 
     def _init_area_plot(self, timestep: int | list) -> None:
@@ -496,6 +507,69 @@ class MultiPanelPlot:
             mean_wind = np.sqrt(U*U + V*V)
             mean_temp = ds['t'][timestep, self.hlim[0]:self.hlim[1], :, :].mean(('x', 'y', 'z')).values
             self.fig.text(0.4, 0.04 ,f'MEAN  w = {mean_wind:.2f} m/s   temp = {mean_temp:.2f} °K')
+
+        self.fig.subplots_adjust(hspace=0.3, wspace=0.15, left=0.13, right=0.9, top=0.82, bottom=0.17)  # make space for colorbar
+        
+
+    def _init_single_spectra_plot(self, timestep: int | list, it_step: int = 3) -> None:
+        """
+        Initializes the single_spectra plot.
+
+        Args:
+            timestep (int | list): The time step for the plot.
+        """
+
+        cmap = plt.cm.Spectral_r
+        # Convert to list for uniformity, if only a single timestep is provided
+        if not isinstance(timestep, list):
+            timestep = [timestep]
+        
+        z, x, y = self.hlim[0], self.idXY[0], self.idXY[1]  # Hardcoded values; can be changed
+
+        radius = self.rgrenz * 1.0e6  # m to µm
+        fac = 1/np.diff(np.log10(radius)) * 1.0e-6  # m3 to cm3
+
+        if isinstance(timestep, list):
+            it_start, it_end = timestep
+        else:
+            it_start, it_end = 0, 1
+
+    
+        self.fig.text(0.5, 0.09, 'radius [µm]', ha='center', va='center')
+        self.fig.text(0.1, 0.5, 'dN/dlog(D_p) [#/cm]', ha='center', va='center', rotation='vertical')
+
+        ds = None
+        for (name, ds), ax in zip(self.datasets.items(), self.axes.flat):
+            self.fig.suptitle(f'Temporal Evolution of {ds["nf"].attrs["long_name"]}\n@{self.y[y]:.3f}/{self.x[x]:.3f} and z = {self.height[z]:.3f} [km]',fontsize = 10, fontweight = 'bold' )
+            ax.minorticks_on()
+            ax.grid(True, which='major', linestyle='-', linewidth='0.5', color='black', alpha=0.5)
+            ax.grid(True, which='minor', linestyle=':', linewidth='0.5', color='black', alpha=0.25)
+
+
+            for it in range(it_start, it_end, it_step):
+                irel = (1.*it - it_start) / (it_end - it_start)
+                crgb = cmap(irel)  # Assuming there's more to this line...
+                chex = colors.to_hex( crgb )
+                    
+                air_density = ds['rho'][it, z, y, x].values  # kg/m3
+                spectra = ds[self.varname].isel(time = it, z = z, x = x, y = y, bin = slice(0, len(fac)))
+                spectra = spectra * air_density * fac
+                spectra.plot.step(
+                    color = chex, 
+                    yscale = 'log',
+                    xscale = 'log',
+                    ax = ax,
+                    yincrease = False, 
+                    ylim = self.ylim,
+                    xlim = self.xlim,
+                    alpha = 0.4
+                ) # type: ignore
+                
+                datestr = str( self.time[it] )
+                plt.figtext( 0.91, 0.85 - 0.8  * irel, datestr, c = chex, fontsize = 'small')
+        
+        self.fig.subplots_adjust(hspace=0.3, wspace=0.15, left=0.6, right=0.88, top=0.95, bottom=0.05)  # make space for colorbar
+
 
     def _get_data_area(self, ds: xr.Dataset, timestep: int | list, hmin: float, hmax: float) -> xr.DataArray:
         """
@@ -589,8 +663,6 @@ class MultiPanelPlot:
 
     def add_windvectors(self, ds, ax, timestep=0):
         u, v = self._get_wind_data(ds, timestep)
-        #u = ds['ut'][timestep, self.hlim[0]:self.hlim[1], :, :].mean('z').values * 1.0e-5
-        #v = ds['vt'][timestep, self.hlim[0]:self.hlim[1], :, :].mean('z').values * 1.0e-5
         quiv = ax.quiver(self.x[::2], self.y[::2], u[::2, ::2], v[::2, ::2], 
                          scale=1.0e2, color='black', alpha=0.7)
         return quiv
@@ -598,7 +670,7 @@ class MultiPanelPlot:
 
 
 
-    def display(self, timestep: int = 0, x: int = 12, y: int = 12, hmin: float = 42, hmax: float = 44, title: str='') -> None:
+    def display(self, timestep: int = 0, x: int = 12, y: int = 12, z: int = 41, hmin: float = 42, hmax: float = 44, title: str='') -> None:
         # Displays the plot according to the plot mode.
         """
 
@@ -613,6 +685,8 @@ class MultiPanelPlot:
             self.fig.suptitle(title, weight='bold')
         if self.mode == 'profile':
             self._display_profile(timestep=timestep, x=x, y=y)
+        elif self.mode =='single_spectra':
+            self._display_single_spectra(timestep=timestep, x=x, y=y, z=z)
         elif self.mode =='timeseries':
             self._display_timeseries(x=x, y=y)    
         elif self.mode == 'area':
@@ -635,6 +709,10 @@ class MultiPanelPlot:
             if i < self.n_axes and self.varname in ds:
                 data = ds[self.varname].isel(time = timestep, y = y, x = x)
                 self.pmeshs[i].set_array(data.values.ravel())
+
+
+    def _display_single_spectra(self, timestep: int = 0, x: int = 12, y: int = 12, z: int = 41) -> None:
+        pass
 
 
     def _display_area(self, timestep: int | list, hmin: float, hmax: float) -> None:
