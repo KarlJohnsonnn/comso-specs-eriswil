@@ -257,52 +257,59 @@ def extract_matching_values(data):
     return matching_values
 
 
-class MultiPanelPlot:
-    def __init__(
 
+class MultiPanelPlot:
+    """
+    A class for generating multi-panel plots from datasets.
+
+    Attributes:
+    - datasets: xarray datasets or list of dataset names.
+    - varname: Name of the variable to be plotted.
+    - mode: Plotting mode (e.g. 'profile', 'timeseries', 'area', 'single_spectra').
+    - metadata: Metadata for the datasets (default: None).
+    - timestep0: Initial timestep(s) (default: None).
+    - timeframe: Timeframe for the plot ('interval' or 'single' by default).
+    - latlon: Show latitude and longitude (default: False).
+    - title: Plot title (default: '').
+    - windvectors: Include wind vectors (default: False).
+    - show: Display the plot (default: False).
+    - grid: Show grid on the plot (default: False).
+    - nrows, ncols: Row and column count for multi-panel (default: 2, 3).
+    - vmin, vmax: Vertical scale values (default: 1.0, 1.0e4).
+    - hmin, hmax: Height scale values (default: 41, 44).
+    - xmin, xmax: X-axis scale values (default: 1.0e-9, 1.0e-2).
+    - ymin, ymax: Y-axis scale values (default: 0.0, 12.0).
+    - idX, idY: Default indices for X and Y (default: 12, 12).
+
+    """
+    
+    def __init__(
         self, 
         datasets: Dict[str, xr.Dataset] | list[str], 
         varname: str, 
         mode: str,         
-        metadata: Dict[str, Dict] = None, # type: ignore
-        timestep0: int | list = None, # type: ignore
+        metadata: Dict[str, Dict],
+        timestep0: int | list,
         timeframe: str = 'single', 
         latlon: bool = False,
         title: str = '',
         windvectors: bool = False,
         show: bool = False,
         grid: bool = False,
-        nrows: int = 2,         ncols: int = 3, 
-        vmin: float = 1.0,      vmax: float = 1.0e4, 
-        hmin: float = 41,       hmax: float = 44, 
-        xmin: float = 1.0e-9,   xmax: float = 1.0e-2, 
-        ymin: float = 0.0,      ymax: float = 12.0, 
-        idX: int = 12,          idY: int = 12,
-
+        nrows: int = 2,
+        ncols: int = 3, 
+        vmin: float = 1.0,
+        vmax: float = 1.0e4, 
+        hmin: float = 41,
+        hmax: float = 44, 
+        xmin: float = 1.0e-9,
+        xmax: float = 1.0e-2, 
+        ymin: float = 0.0,
+        ymax: float = 12.0, 
+        idX: int = 12,
+        idY: int = 12,
     ) -> None:
-        """
-        Initializer for the MultiPanelPlot class. 
 
-        Args:
-            datasets (dict of str: xr.Dataset): The dictionary of data sets for plotting.
-            varname (str): The variable name in the data sets.
-            mode (str): The plotting mode ('profile' or 'area').
-            vmin (float, optional): The minimum value for the color bar. Defaults to 1.0.
-            vmax (float, optional): The maximum value for the color bar. Defaults to 1.0e4.
-            nrows (int, optional): The number of rows in the subplot. Defaults to 2.
-            ncols (int, optional): The number of columns in the subplot. Defaults to 3.
-            hmin (float, optional): The minimum model level height. Defaults to 42.
-            hmax (float, optional): The maximum model level height. Defaults to 44.
-            timeframe (str, optional): The timeframe to plot ('single' or other). Defaults to 'single'.
-            xmin (float, optional): The minimum x-value. Defaults to 1.0e-9.
-            xmax (float, optional): The maximum x-value. Defaults to 1.0e-2.
-            ymin (float, optional): The minimum y-value. Defaults to 0.0.
-            ymax (float, optional): The maximum y-value. Defaults to 12.0
-            timestep0 (int or list, optional): The time step for the plot. Defaults to 0 or [0, 10].
-            metadata (Dict): Metadata from ensemble runs. Defaults None.
-            title (str): Suptitle of the figure.
-        """
-       
         if isinstance(datasets, list):
             self.datasets = read_file_list(datasets, varnames=[varname, 'vt', 'ut', 'wt', 't', 'rho'])
 
@@ -315,25 +322,30 @@ class MultiPanelPlot:
 
         self.varname =  varname
         self.mode = mode
-        self.md = metadata
+        self.md = metadata if metadata else None
         self.show = show
         self.windvectors = windvectors
         self.grid = grid
 
-        dt0 = datetime.datetime.strptime(self.md[key[3:]]['RUNCTL.ydate_ini'], '%Y%m%d%H')
-        self.time = [dt0+datetime.timedelta(seconds=float(15*its)) for its in self.datasets[key].time.values]
-        if self.md and latlon:
-            latlon00 = extract_matching_values(self.md[key[3:]])
-            lat0 = float(latlon00[0]) + float(self.md[key[3:]]['LMGRID.startlat_tot'])
-            lon0 = float(latlon00[1]) + float(self.md[key[3:]]['LMGRID.startlon_tot'])
-            latN = float(latlon00[0]) - float(self.md[key[3:]]['LMGRID.startlat_tot'])
-            lonM = float(latlon00[1]) - float(self.md[key[3:]]['LMGRID.startlon_tot'])
-            print(lat0, latN, lon0, lonM)
-            self.x = np.linspace(lon0, lonM, self.datasets[key].x.values.size)
-            self.y = np.linspace(lat0, latN, self.datasets[key].y.values.size)
-        else:
-            self.x = self.datasets[key].x.values
-            self.y = self.datasets[key].y.values
+        if self.md:
+            self.domain = self.md[key[3:]]['domain']
+            dt0 = datetime.datetime.strptime(self.md[key[3:]][f'INPUT_ORG_{self.domain}']['runctl']['ydate_ini'], '%Y%m%d%H')
+            self.time = [dt0+datetime.timedelta(seconds=float(15*its)) for its in self.datasets[key].time.values]
+
+            if latlon:
+                latlon00 = extract_matching_values(self.md[key[3:]])
+                lat0_tot = float(self.md[key[3:]][f'INPUT_ORG_{self.domain}']['lmgrid']['startlat_tot'])
+                lon0_tot = float(self.md[key[3:]][f'INPUT_ORG_{self.domain}']['lmgrid']['startlon_tot'])
+                lat0 = float(latlon00[0]) + lat0_tot
+                lon0 = float(latlon00[1]) + lon0_tot
+                latN = float(latlon00[0]) - lat0_tot
+                lonM = float(latlon00[1]) - lon0_tot
+                print(lat0, latN, lon0, lonM)
+                self.x = np.linspace(lon0, lonM, self.datasets[key].x.values.size)
+                self.y = np.linspace(lat0, latN, self.datasets[key].y.values.size)
+            else:
+                self.x = self.datasets[key].x.values
+                self.y = self.datasets[key].y.values
 
         self.height = HHLd
         self.xlim = (xmin, xmax)
@@ -418,8 +430,11 @@ class MultiPanelPlot:
         """
         if self.md is not None:
             for date, ax in zip(self.md.keys(), self.axes.flatten()):
-                ax.set_title(f'INP = {self.md[date]["SBM_PAR.dnap_init"]},  FE = {self.md[date]["FLARE_SBM.flare_emission"]}')
-                
+                ax.set_title(
+                    f"INP = {self.md[date][f'INPUT_ORG_{self.domain}']['sbm_par']['dnap_init']}, \
+                       FE = {self.md[date][f'INPUT_ORG_{self.domain}']['flare_sbm']['flare_emission']}"
+                       )
+            
         if self.mode == 'profile' and isinstance(timestep, int):
             self._init_profile_plot(timestep)
         elif self.mode == 'timeseries' and isinstance(timestep, int):
