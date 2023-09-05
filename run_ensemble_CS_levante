@@ -8,13 +8,11 @@ replace_params_and_run() {
     vflare=$1
     [[ $1 == 'no' ]] && lflare=".false." && vflare=0.0
 
-
     starttime=$(date +%s)
     startdtime=$(date -d "@$starttime" +"%Y%m%d_%H%M%S")
     outputnameJson="$3"   
     outputname3d="3D_$startdtime"
     outputnameM="$startdtime"    
-
 
     # Replace the parameters in the input files
     sed -i \
@@ -36,13 +34,10 @@ replace_params_and_run() {
     echo "job id $job_id  starts at $startdtime  on node $nodeX  with parameter:  FE = $1   BINP = $2   files = $outputname3d"
 
     # Call the function with the input Fortran namelist file and desired JSON output file
-    #add_metadata_to_json "$starttime" "$job_id" "$nodeX" "$outputnameJson"
-    extract_to_json "$starttime" "$job_id" "$nodeX" "$outputnameJson"
+    add_metadata_to_json "$starttime" "$job_id" "$nodeX" "$outputnameJson"
     
     # wait for INPUT* files to be read
     sleep 20
-
-    echo $job_id
 }
 
 # Function: wait_for_node
@@ -59,7 +54,7 @@ wait_for_node() {
 # Processes an input FORTRAN namelist, extracts its content, and appends it
 # to an existing JSON file as a new "run entry". Namelist variables are organized
 # under their respective sections and converted into JSON format.
-extract_to_json() {
+add_metadata_to_json() {
     local input_files=("INPUT_ORG_$DOMAIN" "INPUT_DIA" "INPUT_IO_$DOMAIN" "INPUT_ASS" "INPUT_DYN_$DOMAIN" "INPUT_IDEAL" "INPUT_PHY")
     local starttime="$1"
     local startdtime=$(date -d "@$starttime" +"%Y%m%d_%H%M%S")
@@ -73,7 +68,6 @@ extract_to_json() {
     # Assuming the namelists are plain text files
     for input_file in "${input_files[@]}"; do
         json_content=$(python3 python/namelist_converter.py "$RUN_SCRIPT_DIR/$input_file")
- 
         echo -e "    \"$input_file\": $json_content," >> "$output_json"
     done
 
@@ -81,7 +75,6 @@ extract_to_json() {
     tac "$output_json" | awk '!p && sub(/,$/, "") {p=1} 1' | tac > temp.txt && mv temp.txt "$output_json"
     # Finalize the JSON (add closing brackets)
     echo "}}}" >> "$output_json"
-
 }
 
 
@@ -171,5 +164,5 @@ echo "Clean up $outputnameJson" file
 sed -i '2,3d' "$outputnameJson"
 
 # waits up to 8 hours (!!!) to try to copy the output files to a new folder
-# comment this line if you don't want a time limit
+# comment this line if you don't want a time limit !!NOT READY!!
 #wait_and_copy_multiple "${job_ids[@]}" "$RUN_SCRIPT_DIR" "${outputnameJson%.json}"

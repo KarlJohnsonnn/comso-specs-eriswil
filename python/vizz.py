@@ -506,7 +506,7 @@ class MultiPanelPlot:
             U, V = U.mean(), V.mean()
             mean_wind = np.sqrt(U*U + V*V)
             mean_temp = ds['t'][timestep, self.hlim[0]:self.hlim[1], :, :].mean(('x', 'y', 'z')).values
-            self.fig.text(0.4, 0.04 ,f'MEAN  w = {mean_wind:.2f} m/s   temp = {mean_temp:.2f} °K')
+            self.plot_text = self.fig.text(0.4, 0.04 ,f'MEAN  w = {mean_wind:.2f} m/s   temp = {mean_temp:.2f} °K')
 
         self.fig.subplots_adjust(hspace=0.3, wspace=0.15, left=0.13, right=0.9, top=0.82, bottom=0.17)  # make space for colorbar
         
@@ -609,11 +609,16 @@ class MultiPanelPlot:
         Returns:
             xr.DataArray: The data for the plot.
         """
+        
+        z_res = np.abs(np.diff(self.height[self.hlim[0]:self.hlim[1]+1]))
         if self.timeframe == 'single':
-            # Sum over the last two dimensions
-            U = ds['ut'].isel(time=timestep, z=slice(self.hlim[0], self.hlim[1])).mean('z').values * 1.0e-5
-            V = ds['vt'].isel(time=timestep, z=slice(self.hlim[0], self.hlim[1])).mean('z').values * 1.0e-5
-            return U, V
+            # wind U, V are given as wind * air_density * z_res (kg/s)
+            rho = ds['rho'].isel(time=timestep, z=slice(self.hlim[0], self.hlim[1]))
+            U = ds['ut'].isel(time=timestep, z=slice(self.hlim[0], self.hlim[1]))
+            V = ds['vt'].isel(time=timestep, z=slice(self.hlim[0], self.hlim[1]))
+            U = U / z_res[:, np.newaxis, np.newaxis] / rho * 1.0e-6
+            V = V / z_res[:, np.newaxis, np.newaxis] / rho * 1.0e-6
+            return U.mean('z').values, V.mean('z').values
         else:
             raise ValueError('Only single frames! timeframe="signle"')
 
@@ -724,6 +729,7 @@ class MultiPanelPlot:
             hmin (float): The minimum height.
             hmax (float): The maximum height.
         """
+
         for i, (name, ds) in enumerate(self.datasets.items()):
             if i < self.n_axes and self.varname in ds:
                 data = self._get_data_area(ds, timestep, hmin, hmax)
@@ -731,6 +737,11 @@ class MultiPanelPlot:
                 if self.windvectors: 
                     U, V = self._get_wind_data(self.datasets[name], timestep)
                     self.quivers[i].set_UVC(U[::2, ::2], V[::2, ::2])   
+
+            if self.windvectors and i == 0 and self.plot_text:
+                mean_wind = np.sqrt(U*U + V*V).mean()
+                mean_temp = ds['t'][timestep, self.hlim[0]:self.hlim[1], :, :].mean(('x', 'y', 'z')).values
+                self.plot_text.set_text(f'MEAN  w = {mean_wind:.2f} m/s   temp = {mean_temp:.2f} °K')
 
 
     def _display_timeseries(self, x: int = 12, y: int = 12) -> None:
