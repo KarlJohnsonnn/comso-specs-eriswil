@@ -95,56 +95,55 @@ pip install f90nml
 ### Purpose:
 The [replace_params_and_run](https://github.com/KarlJohnsonnn/comso-specs-eriswil/blob/dd72615fd1993cbc9fb7249738deb4417fb6e2f4/run_ensemble_CS_levante#L5) function is central to this script. Its main objective is to modify specific parameters in input files for a simulation run, commence the simulation job, hold until a computational node is allocated for the job, and subsequently output pertinent details about the job. This effectively automates the workflow for executing simulation runs with different parameters.
 
-### Parameters:
-**1. Flare Status (`$1`):**
+### Parameters: 
+1. **Flare Status (`$1`):**
 - *Description:* Represents the status of the flare.
 - *Values:*
     - **"no"**: Indicates the flare is not active.
     - **float > 0.0**: Flare is active and the value is indicative of the flare emission.
 
-**2. Initial Value (`$2`):**
+2. **Initial Value (`$2`):**
 
 - *Description:* Specifies the initial value (float > 0.0) for dnap_init.
 
-**3. Output JSON Name (`$3`):**
+3. **Output JSON Name (`$3`):**
 
 - *Description:* Defines the name for the output JSON file, destined to hold metadata related to the run.
 
 ### Procedure: 
 
-**1. Check Flare Status:** 
+1. **Check Flare Status:***
 The function assesses the first parameter to discern the flare's status. If its value is 'no', the flare is deemed inactive.
 
-**2. Timestamps:**
+2. **Timestamps:**
 Gains the current time in seconds (since 1970-01-01 00:00:00 UTC).
 Formulates this timestamp into the "YYYYMMDD_HHMMSS" structure.
 
-**3. Output Filenames:**
+3. **Output Filenames:**
 Based on the current time, it forms unique identifiers for the output files.
 
-**4. Modification with sed:**
-- Modifies the flare_emission value in the input file.
-- Alters the dnap_init value.
-- Updates the lflare status.
-- Changes the outputname in the input file to the recently created name. This is performed on the `INPUT_ORG_$DOMAIN` file.
-- It also adjusts dates in the `INPUT_DIA` file with the commencement time of the run.
+4. **Modification with sed:**
+    - Modifies the flare_emission value in the input file.
+    - Alters the dnap_init value.
+    - Updates the lflare status.
+    - Changes the outputname in the input file to the recently created name. This is performed on the `INPUT_ORG_$DOMAIN` file.
+    - It also adjusts dates in the `INPUT_DIA` file with the commencement time of the run.
 
-**5. Job Submission:**
+5. **Job Submission:**
 Deploys the sbatch command to commence a job.
 The returned job ID is stored.
 
-**6. Node Allocation:**
+6. **Node Allocation:**
 Utilizes the [wait_for_node](https://github.com/KarlJohnsonnn/comso-specs-eriswil/blob/dd72615fd1993cbc9fb7249738deb4417fb6e2f4/run_ensemble_CS_levante#L45) function to delay until a computational node is designated to the job.
 Display Information: Outputs a message, revealing the job ID, start time, allocated node, and other parameters used.
 
-**7. JSON Metadata:** 
+7. **JSON Metadata:***
 The [add_metadata_to_json](https://github.com/KarlJohnsonnn/comso-specs-eriswil/blob/dd72615fd1993cbc9fb7249738deb4417fb6e2f4/run_ensemble_CS_levante#L57) function appends simulation details from FORTRAN namelists to an existing JSON file. Each entry includes details like start time, job ID, computational node, domain, and settings extracted from specified namelist files. The function ensures proper JSON formatting by removing trailing commas and finalizing the structure with appropriate closing brackets.
 
-
-**8. Wait Sequence:** 
+8. **Wait Sequence:***
 Holds for 20 seconds, presumably to let the simulation environment read files or complete certain operations.
 
-**9. Usage:**
+9. **Usage:**
 To launch a simulation with a deactivated flare, an initial dnap_init value of 10, and desiring to save the metadata in outputname.json, the call would be:
 
 ```bash
@@ -178,7 +177,7 @@ We provide an [example script](https://github.com/KarlJohnsonnn/comso-specs-eris
 ```
 
 ### Main Execution Workflow of the Script:
-#### Initialization:
+
 1. Captures the current timestamp (startdtime).
     - Sets constants like the running script name (RUN_SCRIPT) and the current directory (RUN_SCRIPT_DIR).
     - Defines the domain (DOMAIN) and parameter combinations for flare emissions and background inputs.
@@ -200,7 +199,10 @@ The MultiPanelPlot class is a versatile tool designed to visualize multi-panel p
 - numpy
 - xarray
 - matplotlib
-- ... [other libraries from vizz.py]
+- ... [other libraries from [vizz.py](https://github.com/KarlJohnsonnn/comso-specs-eriswil/blob/dd72615fd1993cbc9fb7249738deb4417fb6e2f4/python/vizz.py)]
+
+## Example Notebook
+Try the [example Jupyter Notebook](https://github.com/KarlJohnsonnn/comso-specs-eriswil/blob/main/python/CS-3D-quicklooks-example.ipynb).
 
 ## Reading in the data 
 The data can be provied in different ways.
