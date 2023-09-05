@@ -119,12 +119,12 @@ plot = vizz.MultiPanelPlot(
 
 Parameters:
 
-- data: Data to be visualized.
-metadata: Metadata associated with the data.
-varname: Name of the variable to be plotted.
-nrows and ncols: Number of rows and columns for the multi-panel plot.
-- mode: Visualization mode. E.g., 'area', 'profile'.
-- vmin and vmax: Minimum and maximum values for the color scale.
+- `data`: Data to be visualized.
+- `metadata`: Metadata associated with the data.
+- `varname`: Name of the variable to be plotted.
+- `nrows` and ncols: Number of rows and columns for the multi-panel plot.
+- `mode`: Visualization mode. E.g., 'area', 'profile'.
+- `vmin` and vmax: Minimum and maximum values for the color scale.
 - ... [other parameters]
 
 ## Features & Methods
