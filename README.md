@@ -96,7 +96,9 @@ pip install f90nml
 The [replace_params_and_run](https://github.com/KarlJohnsonnn/comso-specs-eriswil/blob/dd72615fd1993cbc9fb7249738deb4417fb6e2f4/run_ensemble_CS_levante#L5) function is central to this script. Its main objective is to modify specific parameters in input files for a simulation run, commence the simulation job, hold until a computational node is allocated for the job, and subsequently output pertinent details about the job. This effectively automates the workflow for executing simulation runs with different parameters.
 
 ### Parameters: 
+
 1. **Flare Status (`$1`):**
+
 - *Description:* Represents the status of the flare.
 - *Values:*
     - **"no"**: Indicates the flare is not active.
@@ -112,7 +114,7 @@ The [replace_params_and_run](https://github.com/KarlJohnsonnn/comso-specs-eriswi
 
 ### Procedure: 
 
-1. **Check Flare Status:***
+1. **Check Flare Status:**
 The function assesses the first parameter to discern the flare's status. If its value is 'no', the flare is deemed inactive.
 
 2. **Timestamps:**
@@ -122,7 +124,7 @@ Formulates this timestamp into the "YYYYMMDD_HHMMSS" structure.
 3. **Output Filenames:**
 Based on the current time, it forms unique identifiers for the output files.
 
-4. **Modification with sed:**
+4. **Modification with `sed`:**
     - Modifies the flare_emission value in the input file.
     - Alters the dnap_init value.
     - Updates the lflare status.
@@ -169,6 +171,7 @@ stationlist_tot = 0, 0, 47.0799 , 7.8507 , '00-20230905_114224',
 \END
 ```
 **Note:** ystation_name is limited to 18 characters, limiting the choise of the name given the date as unique identifyer for ensemble runs. We use the format `IJ-YYYYMMMDD_HHMMSS`, were `IJ` is the meteogram number and `YYYYMMMDD_HHMMSS` is the date format that identifies the meteograms to an ensemble run. The date is adapeted automatically for each new run of `run_ensemble_CS_levane`.
+
     
 ## Usage
 We provide an [example script](https://github.com/KarlJohnsonnn/comso-specs-eriswil/blob/dd72615fd1993cbc9fb7249738deb4417fb6e2f4/run_ensemble_CS_levante#L5) to generate an ensemble of simulations with different inital parameter configurations. To run the script, navigate to the directory containing it and execute:
@@ -187,6 +190,8 @@ We provide an [example script](https://github.com/KarlJohnsonnn/comso-specs-eris
     - Iterates over flare emission and background input combinations. For each combination, the script modifies the simulation parameters and launches the respective job using replace_params_and_run.
 3. Cleanup: 
     - Removes redundant entries in the metadata file to finalize it in proper JSON format.
+
+### ToDo: The output files of an ensemble run have to be moved manually into a new directory named by the excetution time..
 
 </br></br></br></br>
 
