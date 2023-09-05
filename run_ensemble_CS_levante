@@ -36,13 +36,13 @@ replace_params_and_run() {
     echo "job id $job_id  starts at $startdtime  on node $nodeX  with parameter:  FE = $1   BINP = $2   files = $outputname3d"
 
     # Call the function with the input Fortran namelist file and desired JSON output file
-    add_metadata_to_json "$starttime" "$job_id" "$nodeX" "$outputnameJson"
+    #add_metadata_to_json "$starttime" "$job_id" "$nodeX" "$outputnameJson"
+    extract_to_json "$starttime" "$job_id" "$nodeX" "$outputnameJson"
     
     # wait for INPUT* files to be read
     sleep 20
 
-    # remove syntax errors
-    #modify_json "$outputnameJson"
+    echo $job_id
 }
 
 # Function: wait_for_node
@@ -59,43 +59,71 @@ wait_for_node() {
 # Processes an input FORTRAN namelist, extracts its content, and appends it
 # to an existing JSON file as a new "run entry". Namelist variables are organized
 # under their respective sections and converted into JSON format.
-add_metadata_to_json() {
+extract_to_json() {
     local input_files=("INPUT_ORG_$DOMAIN" "INPUT_DIA" "INPUT_IO_$DOMAIN" "INPUT_ASS" "INPUT_DYN_$DOMAIN" "INPUT_IDEAL" "INPUT_PHY")
     local starttime="$1"
     local startdtime=$(date -d "@$starttime" +"%Y%m%d_%H%M%S")
     local output_json="$4"
-    local json_output=""
     
     sed -i '$ d' "$output_json"
     echo -e ",\n  \"$startdtime\": {" >> "$output_json"
     echo -e "    \"starttime\": \"$starttime\"," >> "$output_json"
-    echo -e "    \"job_id\": \"$2\",\n    \"nodeX\": \"$3\",\n    \"domain\": \"$DOMAIN\"," >> "$output_json"
+    echo -e "    \"job_id\": \"$2\",\n    \"nodeX\": \"$3\",\n    \"domain\": \"$DOMAIN\",\n" >> "$output_json"
 
+    # Assuming the namelists are plain text files
     for input_file in "${input_files[@]}"; do
-        while IFS= read -r line; do
-            [[ -z "$line" || ${line} =~ ^[[:space:]]*! ]] && continue
-            [[ "$line" =~ ^[[:space:]]*\& ]] && current_section="${line//[& ]/}" && continue
-            [[ "$line" =~ \/END ]] && current_section="" && continue
-            
-            if [[ -n "$current_section" ]]; then
-                line=${line%,}
-                IFS=',' read -ra assignments <<< "$line"
-                for assignment in "${assignments[@]}"; do
-                    key=$(echo "$assignment" | cut -d'=' -f1 | xargs)
-                    value=$(echo "$assignment" | cut -d'=' -f2 | xargs)
-                    json_output+="    \"$current_section.$key\": \"$value\",\n"
-                done
-            fi
-        done < "$input_file"
+        json_content=$(python3 python/namelist_converter.py "$RUN_SCRIPT_DIR/$input_file")
+ 
+        echo -e "    \"$input_file\": $json_content," >> "$output_json"
     done
 
-    json_output="${json_output:0:${#json_output}-3}"    # remove the last comma
-    json_output+=" \n  }\n}"
+    # Remove the last comma in the file
+    tac "$output_json" | awk '!p && sub(/,$/, "") {p=1} 1' | tac > temp.txt && mv temp.txt "$output_json"
+    # Finalize the JSON (add closing brackets)
+    echo "}}}" >> "$output_json"
 
-    echo -e "$json_output" >> "$output_json"
-    
 }
 
+
+
+# Function to wait for sbatch jobs to finish and copy specific files
+wait_and_copy_multiple() {
+    local job_ids=("$@")       # Array of job IDs
+    local output_dir="$2"      # Directory where job's output is stored
+    local destination_dir="$3"  # Destination directory for copied files
+    fout=("${destination_dir[@]/%/.out}")
+    ferr=("${destination_dir[@]/%/.err}")
+    local files_to_copy=("M_*.nc" "3D_*.nc" "$3.json" "${fout[@]}" "${ferr[@]}")  # List of files to copy
+
+    # Check if the directory exists
+    [ ! -d "$destination_dir" ] && mkdir -p "$destination_dir"
+
+    bcopies=0
+    n_iter=0
+    job_id_size=${#job_ids[@]}
+    max_timeout=28800  # 8h
+    
+    echo "\n Waiting up to 8h for jobs ${job_ids[@]} to finish and copy output to /$destination_dir ......"
+    while true;  do
+        
+        sleep 60  # Adjust sleep duration as needed
+        n_iter=$((n_iter + 1))
+        
+        for job_id in "${job_ids[@]}"; do
+            # Copy specific files from the job's output directory to the destination directory
+            for file in "${files_to_copy[@]}"; do
+                if [ -f "$output_dir/$file" ]; then
+                    cp "$output_dir/$file" "$destination_dir/"
+                    echo "Copied $file to $destination_dir"
+                    bcopies=$((bcopies + 1))
+                fi
+            done
+        done
+        [ "$job_id_size" -eq "$bcopies" ] && break
+        [ "$max_timeout" -eq "$n_iter"  ] && break
+    done
+
+}
 
 
 #
@@ -105,6 +133,7 @@ startdtime=$(date +%Y%m%d_%H%M%S)
 
 # Define constants
 RUN_SCRIPT=run_COSMO-SPECS_levante
+RUN_SCRIPT_DIR=$(pwd)
 
 #DOMAIN="12x12"
 DOMAIN="42x32"
@@ -123,14 +152,24 @@ echo -e "," >> "$outputnameJson"
 echo -e "\nsubmit jobs and wait unitl a node is assigned to read the INPUT* files"
 echo -e "ensemble run date: $startdtime UTC"
 
+# Array to store job IDs
+job_ids=()
 
 # Loop over the different parameter combinations
 for background_inp in "${background_inp_values[@]}"; do
     for flare_emission in "${flare_emission_values[@]}"; do
         # Call replace_params_and_run for each combination of parameters
         replace_params_and_run "$flare_emission" "$background_inp" "$outputnameJson"
+        
+        #job_id=$(replace_params_and_run "$flare_emission" "$background_inp" "$outputnameJson")
+        #job_ids+=("$job_id")
     done
 done
 
-# remove line 2 and 3 form the json file (-> removes a comma and an empty line)
+# delete line 2 and 3 form the json file (i.e. comma and empty line)
+echo "Clean up $outputnameJson" file
 sed -i '2,3d' "$outputnameJson"
+
+# waits up to 8 hours (!!!) to try to copy the output files to a new folder
+# comment this line if you don't want a time limit
+#wait_and_copy_multiple "${job_ids[@]}" "$RUN_SCRIPT_DIR" "${outputnameJson%.json}"
