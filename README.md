@@ -185,13 +185,13 @@ We provide an [example script](https://github.com/KarlJohnsonnn/comso-specs-eris
     - Sets constants like the running script name (RUN_SCRIPT) and the current directory (RUN_SCRIPT_DIR).
     - Defines the domain (DOMAIN) and parameter combinations for flare emissions and background inputs.
     - Initializes a metadata JSON file (outputnameJson) for logging.
+    - Initializes a copy file, containing commands to copy the output files into a new folder.
 2. Simulation Execution:
     - Prints out the ensemble run date for user reference.
     - Iterates over flare emission and background input combinations. For each combination, the script modifies the simulation parameters and launches the respective job using replace_params_and_run.
 3. Cleanup: 
     - Removes redundant entries in the metadata file to finalize it in proper JSON format.
-
-### ToDo: The output files of an ensemble run have to be moved manually into a new directory named by the excetution time..
+    - Add last line to the copy file.
 
 </br></br></br></br>
 
