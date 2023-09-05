@@ -20,10 +20,9 @@ replace_params_and_run() {
         -e "s/^\( *dnap_init *\)= *[^ ]*/\1= $2/" \
         -e "s/^\( *lflare *\)= *[^ ]*/\1= $lflare/" \
         -e "s/^\( *outputname *\)= *[^ ]*/\1= $outputname3d/" \
-        -e "s/^\( *stationlist_tot *\)= *[^ ]*/\1= $outputnameM/" \
         "INPUT_ORG_$DOMAIN"
 
-    sed -i "/stationlist_tot/ s/'.*'/'$outputnameM'/g" INPUT_DIA
+    sed -E -i "s/[0-9]{8}_[0-9]{6}/$outputnameM/g" "INPUT_DIA"
 
     # Submit the job
     job_id=$(sbatch --parsable $RUN_SCRIPT $DOMAIN)
@@ -153,9 +152,6 @@ for background_inp in "${background_inp_values[@]}"; do
     for flare_emission in "${flare_emission_values[@]}"; do
         # Call replace_params_and_run for each combination of parameters
         replace_params_and_run "$flare_emission" "$background_inp" "$outputnameJson"
-        
-        #job_id=$(replace_params_and_run "$flare_emission" "$background_inp" "$outputnameJson")
-        #job_ids+=("$job_id")
     done
 done
 
@@ -165,4 +161,4 @@ sed -i '2,3d' "$outputnameJson"
 
 # waits up to 8 hours (!!!) to try to copy the output files to a new folder
 # comment this line if you don't want a time limit !!NOT READY!!
-#wait_and_copy_multiple "${job_ids[@]}" "$RUN_SCRIPT_DIR" "${outputnameJson%.json}"
+# wait_and_copy_multiple "${job_ids[@]}" "$RUN_SCRIPT_DIR" "${outputnameJson%.json}"
