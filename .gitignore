@@ -3,6 +3,8 @@
 *.err
 python/plots/
 YU*
+YUSPECIF
+COS_in/*
 COS_out/*
 *.json
 python/__pycache__/*

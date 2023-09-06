@@ -25,6 +25,7 @@ replace_params_and_run() {
 
     # Submit the job
     job_id=$(sbatch --parsable $RUN_SCRIPT $DOMAIN)
+    
     # Wait for a node to be assigned
     nodeX=$(wait_for_node "$job_id")
 
@@ -79,7 +80,7 @@ append_to_json() {
 
 # Function appends bash commands to a file
 append_to_file() {
-    local files_to_copy=("M_*-$2.nc" "3D_$2.nc" "$1.out" "$1.err")  # List of files to copy
+    local files_to_copy=("$1.out" "$1.err" "M*$2.nc" "3D*$2.nc")  # List of files to copy
     for file in "${files_to_copy[@]}"; do
         echo -e "mv $RUN_SCRIPT_DIR/$file ${JSON_FILE%.json}/" >> "$COPY_FILE"
     done
@@ -112,8 +113,8 @@ echo -e "," >> "$JSON_FILE"
 COPY_FILE="copy2_${JSON_FILE%.json}.sh"
 touch "$COPY_FILE"
 chmod +x "$COPY_FILE"
-echo -e 'echo "mkdir ${JSON_FILE%.json}"' >> "$COPY_FILE"
-echo -e 'mkdir -p ${JSON_FILE%.json}' >> "$COPY_FILE"
+echo -e "echo 'mkdir ${JSON_FILE%.json}'" >> "$COPY_FILE"
+echo -e "mkdir -p ${JSON_FILE%.json}" >> "$COPY_FILE"
 echo -e "mv $RUN_SCRIPT_DIR/$JSON_FILE ${JSON_FILE%.json}/" >> "$COPY_FILE"
 
 

@@ -73,7 +73,7 @@ tar xzvf cosmo-specs-eriswill-testcase_ic-bc-cosin-data.tar.gz
 
 </br></br></br>
 
-# Documentation: COSMO-SPECS Ensemble Run Script `run_ensemble_CS_levane`
+# Documentation: COSMO-SPECS Ensemble Run Script `run_ensemble_CS_levante`
 ## Overview
 This script automates the process of modifying input files for the COSMO-SPECS model, submitting jobs to a batch system, waiting for the jobs to be assigned to a node, and tracking metadata about each run. The script also has functionality to wait for job completion and copy specific output files to a designated directory.
 
@@ -84,12 +84,14 @@ pip install f90nml
 ```
 
 ## Main Execution:
-1. Determines the current date and time.
+1. Determines the current date and time (formatted: `YYYYmmdd_HHMMSS` and unix time step: integer).
 2. Sets the names and paths for necessary scripts and constants.
-3. Initializes the metadata JSON file for the ensemble run. The JSON file contains the information of all INPUT files for this run.
+3. Initializes the metadata JSON file for the ensemble run. The JSON file contains the information of all INPUT files for this run. The name of the folder is definied as:
+    * `cs-eriswil__YYYYmmdd_HHMMSS.json`.
 4. Iterates through combinations of flare_emission_values and background_inp_values to submit ensemble runs.
 5. Cleans up the metadata JSON file.
-6. Optionally, waits and tries to copy output files to a designated directory. (Not done jet!!)
+6. During iteration, a copy bash script is generated to move all run output files into a new folder. The name of the folder is definied as:
+    * `cs-eriswil__YYYYmmdd_HHMMSS/`.
 
 ## Integral Function: `replace_params_and_run()`
 ### Purpose:
@@ -142,8 +144,8 @@ Display Information: Outputs a message, revealing the job ID, start time, alloca
 7. **JSON Metadata:***
 The [add_metadata_to_json](https://github.com/KarlJohnsonnn/comso-specs-eriswil/blob/dd72615fd1993cbc9fb7249738deb4417fb6e2f4/run_ensemble_CS_levante#L57) function appends simulation details from FORTRAN namelists to an existing JSON file. Each entry includes details like start time, job ID, computational node, domain, and settings extracted from specified namelist files. The function ensures proper JSON formatting by removing trailing commas and finalizing the structure with appropriate closing brackets.
 
-8. **Wait Sequence:***
-Holds for 20 seconds, presumably to let the simulation environment read files or complete certain operations.
+8. **Copy File:***
+Generates a bash script, which moves the ensemble output files for this run into a new folder when excecuted and afterwards deleats itself.
 
 9. **Usage:**
 To launch a simulation with a deactivated flare, an initial dnap_init value of 10, and desiring to save the metadata in outputname.json, the call would be:
@@ -159,7 +161,7 @@ This function is integral to the script, acting as a catalyst to automate severa
 
 ## INPUT_DIA Syntax Rule:
 To run the ensemble script properly, the User has to ensure the syntax rule in the INPUT_DIA file (i.e. the meteogram definition):
-**INPUT_DIA**: The `station_list` variable is defindes as:
+**INPUT_DIA**, the `station_list` variable is defindes as:
 ```fortran
 &DIACTL
 ...
@@ -170,7 +172,7 @@ stationlist_tot = 0, 0, 47.0799 , 7.8507 , '00-20230905_114224',
                   4, 9, 47.0575 , 7.7890 , '49-20230905_114224' ,
 \END
 ```
-**Note:** ystation_name is limited to 18 characters, limiting the choise of the name given the date as unique identifyer for ensemble runs. We use the format `IJ-YYYYMMMDD_HHMMSS`, were `IJ` is the meteogram number and `YYYYMMMDD_HHMMSS` is the date format that identifies the meteograms to an ensemble run. The date is adapeted automatically for each new run of `run_ensemble_CS_levane`.
+**Note:** station_name lenth is can hold up to 18 characters, limiting the choise of the name given the date as unique identifyer for ensemble runs. We use the format `IJ-YYYYMMMDD_HHMMSS`, were `IJ` is the meteogram number and `YYYYMMMDD_HHMMSS` is the date format that identifies the meteograms to an ensemble run. The date is adapeted automatically for each new run of `run_ensemble_CS_levane`.
 
     
 ## Usage
@@ -184,7 +186,7 @@ We provide an [example script](https://github.com/KarlJohnsonnn/comso-specs-eris
 1. Captures the current timestamp (startdtime).
     - Sets constants like the running script name (RUN_SCRIPT) and the current directory (RUN_SCRIPT_DIR).
     - Defines the domain (DOMAIN) and parameter combinations for flare emissions and background inputs.
-    - Initializes a metadata JSON file (outputnameJson) for logging.
+    - Initializes a metadata JSON file (JSON_FILE) for logging.
     - Initializes a copy file, containing commands to copy the output files into a new folder.
 2. Simulation Execution:
     - Prints out the ensemble run date for user reference.
@@ -275,6 +277,9 @@ Parameters:
 You can add a ruler to the plot to measure distances or highlight specific regions:
 
 ```python
+# start and end point of the plume
+lat_start, lon_start = 47.045,  7.775
+lat_end, lon_end     = 47.0910, 7.8388
 plot.add_ruler(lat_start, lon_start, lat_end, lon_end)
 ```
 
@@ -282,13 +287,15 @@ plot.add_ruler(lat_start, lon_start, lat_end, lon_end)
 To display the plot:
 
 ```python
+i = 0 # first time step
+tit = 'Title String'
 plot.display(timestep=i, title=tit)
 ```
 
 ### To save the plot to a file:
 
 ```python
-plot.save_figure(f'/path/to/save/{str(i).zfill(3)}_nf.png')
+plot.save_figure('/path/to/save/3D_nf.png')
 ```
 
 ## Examples

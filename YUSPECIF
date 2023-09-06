@@ -76,17 +76,17 @@
        --------------------
   
       Variable               Actual VaDefault Value      Format
-       flare_emission     8000000000.00   10000000.0000    R 
+       flare_emission       80000000.00   10000000.0000    R 
        flare_particle_radius       0.00      0.0000        R 
        flare_effect_temp         268.00    260.0000        R 
        itimemax_dumm          10                 10        I 
        flare_btime      340.0000            30.0000        R 
-       flare_startti    286.0000            60.0000        R 
-       flare_endtime   8465.0000           300.0000        R 
+       flare_startti     60.0000            60.0000        R 
+       flare_endtime   9000.0000           300.0000        R 
        flare_restart   1420.0000            60.0000        R 
        flare_lat         47.0772            47.0772        R 
        flare_lon          7.8444             7.8444        R 
-       flare_hight      -41.0000           100.0000        R 
+       flare_hight      -42.0000           100.0000        R 
   
 0     NAMELIST:  runctl
       -----------------
@@ -346,7 +346,14 @@
   
        Selected grid points:
        Nr.:    i-index   j-index
-         1        10        14    47.064     7.798   20230831_095821     
+         1        17        17    47.080     7.851   00-20230906_091132  
+         2         6        10    47.045     7.771   01-20230906_091132  
+         3         2         8         -         -   02-20230906_091132  
+         4         4         9         -         -   04-20230906_091132  
+         5         6        10         -         -   06-20230906_091132  
+         6         8        11         -         -   08-20230906_091132  
+         7        10        12         -         -   10-20230906_091132  
+         8        12        13         -         -   12-20230906_091132  
   
       Mean values:
       Variable      Actual Value      Default Value      Format
