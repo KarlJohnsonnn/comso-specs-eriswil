@@ -75,7 +75,10 @@ append_to_json() {
     # Remove the last comma in the file
     tac "$JSON_FILE" | awk '!p && sub(/,$/, "") {p=1} 1' | tac > temp.txt && mv temp.txt "$JSON_FILE"
     # Finalize the JSON (add closing brackets)
-    echo "}}}" >> "$JSON_FILE"
+    #echo "}}" >> "$JSON_FILE"
+    echo "}" >> "$JSON_FILE"
+    echo "}" >> "$JSON_FILE"
+    
 }
 
 # Function appends bash commands to a file

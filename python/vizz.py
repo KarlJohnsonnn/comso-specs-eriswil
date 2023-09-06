@@ -327,13 +327,15 @@ class MultiPanelPlot:
         self.windvectors = windvectors
         self.grid = grid
 
+
         if self.md:
             self.domain = self.md[key[3:]]['domain']
             dt0 = datetime.datetime.strptime(self.md[key[3:]][f'INPUT_ORG_{self.domain}']['runctl']['ydate_ini'], '%Y%m%d%H')
             self.time = [dt0+datetime.timedelta(seconds=float(15*its)) for its in self.datasets[key].time.values]
 
             if latlon:
-                latlon00 = extract_matching_values(self.md[key[3:]])
+                #latlon00 = extract_matching_values(self.md[key[3:]])
+                latlon00 = [47.0799, 7.8507]    # caution! this only works for 42x32 eriswil domain
                 lat0_tot = float(self.md[key[3:]][f'INPUT_ORG_{self.domain}']['lmgrid']['startlat_tot'])
                 lon0_tot = float(self.md[key[3:]][f'INPUT_ORG_{self.domain}']['lmgrid']['startlon_tot'])
                 lat0 = float(latlon00[0]) + lat0_tot
@@ -346,6 +348,8 @@ class MultiPanelPlot:
             else:
                 self.x = self.datasets[key].x.values
                 self.y = self.datasets[key].y.values
+        else:
+            self.time = self.datasets[key].time.values
 
         self.height = HHLd
         self.xlim = (xmin, xmax)
@@ -382,7 +386,17 @@ class MultiPanelPlot:
         if nrows*ncols==1:
             self.axes = np.array(self.axes)
         
-        self.timestep = 0 if (timestep0 is None and timeframe == 'single') else (timestep0 if timestep0 is not None else [0, 10])
+
+        if (timestep0 is None and timeframe == 'single'):
+            self.timestep = 0 
+        else:
+            if timestep0 is not None:
+                self.timestep = timestep0 
+            else:
+                self.timestep = [0, 10]
+        
+        if isinstance(self.timestep, int) and self.timestep > len(self.time)-1:
+            raise ValueError(f'Reduce the time step parameter "timestep0"! Maximum value = {len(self.time)}')
 
         self.init_first_plot(self.timestep)
         if title:
